@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+
+# Model weights and caches
+checkpoints/
+*.safetensors
+.cache/
+hf_cache/
+
+# Training logs
+runs/
+wandb/
+
+# Credentials
+.env
+.env.*
+!.env.example
+auth.json
+.codex/
+
+# System files
+.DS_Store

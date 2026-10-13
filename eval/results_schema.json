@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "A2 results.json",
+  "description": "Behavioral + capability-retention results for base / SFT / SFT+DPO at each beta. ask_rate is measured on the ambiguous held-out set, answer_rate on the clear held-out set, mmlu_acc on the 200-question MMLU slice. All rates and accuracies are in [0, 1].",
+  "type": "object",
+  "required": ["schema_version", "metadata", "eval_sets", "runs"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["base_model", "seeds", "judge", "betas"],
+      "additionalProperties": true,
+      "properties": {
+        "base_model": {
+          "type": "string",
+          "description": "e.g. 'meta-llama/Llama-3.2-1B-Instruct' or 'meta-llama/Llama-3.2-3B-Instruct'."
+        },
+        "seeds": {
+          "type": "object",
+          "description": "Fixed seeds used, for reproducibility.",
+          "required": ["data", "train", "eval"],
+          "properties": {
+            "data": {"type": "integer"},
+            "train": {"type": "integer"},
+            "eval": {"type": "integer"}
+          }
+        },
+        "judge": {
+          "type": "object",
+          "required": ["backend", "model", "rubric_version"],
+          "properties": {
+            "backend": {"type": "string", "description": "e.g. 'openai_compatible' or 'mock'."},
+            "model": {"type": "string", "description": "Judge model name/id."},
+            "rubric_version": {"type": "string", "description": "RUBRIC_VERSION from judge.py."}
+          }
+        },
+        "betas": {
+          "type": "array",
+          "description": "The DPO beta values swept (>= 3).",
+          "items": {"type": "number"},
+          "minItems": 3,
+          "uniqueItems": true
+        }
+      }
+    },
+    "eval_sets": {
+      "type": "object",
+      "required": ["ambiguous", "clear", "mmlu"],
+      "properties": {
+        "ambiguous": {"$ref": "#/$defs/eval_set_ref"},
+        "clear": {"$ref": "#/$defs/eval_set_ref"},
+        "mmlu": {"$ref": "#/$defs/eval_set_ref"}
+      }
+    },
+    "runs": {
+      "type": "object",
+      "required": ["base", "sft", "dpo"],
+      "additionalProperties": false,
+      "properties": {
+        "base": {"$ref": "#/$defs/metrics"},
+        "sft": {"$ref": "#/$defs/metrics"},
+        "dpo": {
+          "type": "array",
+          "description": "One entry per swept beta; must cover every value in metadata.betas.",
+          "minItems": 3,
+          "items": {
+            "allOf": [
+              {"$ref": "#/$defs/metrics"},
+              {
+                "type": "object",
+                "required": ["beta"],
+                "properties": {"beta": {"type": "number"}}
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "eval_set_ref": {
+      "type": "object",
+      "required": ["path", "n"],
+      "properties": {
+        "path": {"type": "string"},
+        "n": {"type": "integer", "minimum": 1}
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["ask_rate", "answer_rate", "mmlu_acc"],
+      "properties": {
+        "ask_rate": {
+          "type": "number", "minimum": 0, "maximum": 1,
+          "description": "Fraction of the ambiguous set judged 'ask'."
+        },
+        "answer_rate": {
+          "type": "number", "minimum": 0, "maximum": 1,
+          "description": "Fraction of the clear set judged 'answer'."
+        },
+        "mmlu_acc": {
+          "type": "number", "minimum": 0, "maximum": 1,
+          "description": "Accuracy on the 200-question MMLU slice."
+        },
+        "label_counts": {
+          "type": "object",
+          "description": "Optional: ask/answer/other breakdown for the behavioral sets.",
+          "properties": {
+            "ambiguous": {"$ref": "#/$defs/counts"},
+            "clear": {"$ref": "#/$defs/counts"}
+          }
+        }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "properties": {
+        "ask": {"type": "integer", "minimum": 0},
+        "answer": {"type": "integer", "minimum": 0},
+        "other": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

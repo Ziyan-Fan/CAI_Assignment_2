@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "metadata": {
+    "base_model": "meta-llama/Llama-3.2-1B-Instruct",
+    "seeds": {"data": 6604, "train": 6604, "eval": 6604},
+    "judge": {"backend": "local_hf", "model": "meta-llama/Llama-3.1-8B-Instruct", "rubric_version": "1.0"},
+    "betas": [0.05, 0.1, 0.5]
+  },
+  "eval_sets": {
+    "ambiguous": {"path": "eval/held_out_ambiguous.jsonl", "n": 150},
+    "clear": {"path": "eval/held_out_clear.jsonl", "n": 150},
+    "mmlu": {"path": "eval/mmlu_slice.jsonl", "n": 200}
+  },
+  "runs": {
+    "base": {"ask_rate": 0.0, "answer_rate": 0.0, "mmlu_acc": 0.0},
+    "sft": {"ask_rate": 0.0, "answer_rate": 0.0, "mmlu_acc": 0.0},
+    "dpo": [
+      {"beta": 0.05, "ask_rate": 0.0, "answer_rate": 0.0, "mmlu_acc": 0.0},
+      {"beta": 0.1, "ask_rate": 0.0, "answer_rate": 0.0, "mmlu_acc": 0.0},
+      {"beta": 0.5, "ask_rate": 0.0, "answer_rate": 0.0, "mmlu_acc": 0.0}
+    ]
+  }
+}
