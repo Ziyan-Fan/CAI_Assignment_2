@@ -37,4 +37,26 @@ def tokenize_with_response_mask(messages: list[dict], tokenizer, max_seq_len: in
     starts in the full conversation's tokenization -- everything before that index is
     prompt, everything from it onward (up to the end-of-turn token) is response.
     """
-    raise NotImplementedError("Implement tokenization + response masking.")
+    # Tokenize the whole conversation, including the final response.
+    full_tokens = tokenizer.apply_chat_template(
+        messages, tokenize=True, add_generation_prompt=False
+    )
+
+    # The prompt includes the assistant header, but not its response.
+    prompt_tokens = tokenizer.apply_chat_template(
+        messages[:-1], tokenize=True, add_generation_prompt=True
+    )
+    response_start = len(prompt_tokens)
+
+    input_ids = torch.tensor(full_tokens[:max_seq_len], dtype=torch.long)
+    attention_mask = torch.ones_like(input_ids)
+
+    # Only the final assistant response contributes to the loss.
+    response_mask = torch.zeros_like(input_ids)
+    response_mask[response_start:] = 1
+
+    return {
+        "input_ids": input_ids,
+        "attention_mask": attention_mask,
+        "response_mask": response_mask,
+    }

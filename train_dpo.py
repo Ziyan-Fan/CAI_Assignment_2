@@ -18,7 +18,10 @@ utils/masking_utils.tokenize_with_response_mask() -- see Part A for where that T
 import argparse
 
 import torch
+import torch.nn.functional as F
 from peft import PeftModel
+from torch.nn.utils.rnn import pad_sequence
+from torch.utils.data import DataLoader
 
 from configs.paths_config import SFT_CHECKPOINT_DIR, dpo_checkpoint_dir
 from configs.train_config import (
@@ -95,7 +98,17 @@ def sequence_log_prob(
     `with model.disable_adapter():` block to get the reference log-probs -- see
     README.md Part B, gotcha #1.
     """
-    raise NotImplementedError("Implement per-sequence response log-prob computation.")
+    outputs = model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)
+
+    # Each position predicts the next token, so shift logits and targets by one.
+    logits = outputs.logits[:, :-1, :].float()
+    targets = input_ids[:, 1:]
+    log_probs = F.log_softmax(logits, dim=-1)
+    token_log_probs = log_probs.gather(-1, targets.unsqueeze(-1)).squeeze(-1)
+
+    # Add up only response tokens, excluding any padding.
+    mask = response_mask[:, 1:] * attention_mask[:, 1:]
+    return (token_log_probs * mask).sum(dim=1)
 
 
 def dpo_loss(
@@ -116,7 +129,12 @@ def dpo_loss(
     This function's signature must not change. The GTA reference tests exercise it
     directly (tests/test_dpo_loss.py).
     """
-    raise NotImplementedError("Implement the DPO loss.")
+    chosen_log_ratio = policy_chosen_logps - reference_chosen_logps
+    rejected_log_ratio = policy_rejected_logps - reference_rejected_logps
+    margin = chosen_log_ratio - rejected_log_ratio
+
+    # log-sigmoid is more stable than taking log(sigmoid(...)) separately.
+    return -F.logsigmoid(beta * margin).mean()
 
 
 def train_loop(policy, tokenizer, dataset, beta: float = DPO_BETA) -> None:
@@ -140,7 +158,112 @@ def train_loop(policy, tokenizer, dataset, beta: float = DPO_BETA) -> None:
     in configs/train_config.py -- yours to tune. `beta` is passed in per run (--beta) so
     the sweep trains a separate adapter for each value.
     """
-    raise NotImplementedError("Implement the Part B DPO training loop.")
+    # Tokenize both responses once, before starting the epochs.
+    training_examples = []
+    for row in dataset:
+        example = build_dpo_example(
+            row["prompt"], row["chosen"], row["rejected"], tokenizer, DPO_MAX_SEQ_LEN
+        )
+        # Both responses need tokens left to score after truncation.
+        chosen_has_response = example["chosen_response_mask"][1:].any()
+        rejected_has_response = example["rejected_response_mask"][1:].any()
+        if chosen_has_response and rejected_has_response:
+            training_examples.append(example)
+
+    if not training_examples:
+        raise ValueError("No preference pairs have response tokens on both sides after truncation.")
+    print(f"Prepared {len(training_examples)} of {len(dataset)} preference pairs for DPO.")
+
+    def collate_batch(examples):
+        batch = {}
+        for side in ("chosen", "rejected"):
+            # Pad each side to its longest sequence, and keep padding out of the loss.
+            batch[f"{side}_input_ids"] = pad_sequence(
+                [example[f"{side}_input_ids"] for example in examples],
+                batch_first=True,
+                padding_value=tokenizer.pad_token_id,
+            )
+            batch[f"{side}_attention_mask"] = pad_sequence(
+                [example[f"{side}_attention_mask"] for example in examples],
+                batch_first=True,
+                padding_value=0,
+            )
+            batch[f"{side}_response_mask"] = pad_sequence(
+                [example[f"{side}_response_mask"] for example in examples],
+                batch_first=True,
+                padding_value=0,
+            )
+        return batch
+
+    train_loader = DataLoader(
+        training_examples,
+        batch_size=DPO_BATCH_SIZE,
+        shuffle=True,
+        collate_fn=collate_batch,
+    )
+
+    # Only the LoRA parameters are trainable; the base model stays frozen.
+    trainable_parameters = [p for p in policy.parameters() if p.requires_grad]
+    optimizer = torch.optim.AdamW(trainable_parameters, lr=DPO_LEARNING_RATE)
+    device = next(policy.parameters()).device
+    policy.train()
+
+    for epoch in range(DPO_EPOCHS):
+        total_loss = 0.0
+        for step, batch in enumerate(train_loader, start=1):
+            batch = {key: value.to(device) for key, value in batch.items()}
+            optimizer.zero_grad()
+
+            policy_chosen_logps = sequence_log_prob(
+                policy,
+                batch["chosen_input_ids"],
+                batch["chosen_attention_mask"],
+                batch["chosen_response_mask"],
+            )
+            policy_rejected_logps = sequence_log_prob(
+                policy,
+                batch["rejected_input_ids"],
+                batch["rejected_attention_mask"],
+                batch["rejected_response_mask"],
+            )
+
+            # Switch off dropout and gradients while scoring the frozen reference.
+            policy.eval()
+            with policy.disable_adapter():
+                with torch.no_grad():
+                    reference_chosen_logps = sequence_log_prob(
+                        policy,
+                        batch["chosen_input_ids"],
+                        batch["chosen_attention_mask"],
+                        batch["chosen_response_mask"],
+                    )
+                    reference_rejected_logps = sequence_log_prob(
+                        policy,
+                        batch["rejected_input_ids"],
+                        batch["rejected_attention_mask"],
+                        batch["rejected_response_mask"],
+                    )
+            policy.train()
+
+            loss = dpo_loss(
+                policy_chosen_logps,
+                policy_rejected_logps,
+                reference_chosen_logps,
+                reference_rejected_logps,
+                beta=beta,
+            )
+            loss.backward()
+            optimizer.step()
+
+            loss_value = loss.item()
+            total_loss += loss_value
+            if step == 1 or step % 10 == 0 or step == len(train_loader):
+                print(
+                    f"Epoch {epoch + 1}/{DPO_EPOCHS}, "
+                    f"step {step}/{len(train_loader)}, loss: {loss_value:.4f}"
+                )
+
+        print(f"Epoch {epoch + 1} average loss: {total_loss / len(train_loader):.4f}")
 
 
 def main() -> None:

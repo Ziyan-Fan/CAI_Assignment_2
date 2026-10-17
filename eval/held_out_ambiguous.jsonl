@@ -1,0 +1,150 @@
+{"id": "dev_amb_001", "class": "ambiguous", "category": "programming", "prompt": "My Python function crashes with IndexError. Which expression in it is accessing an invalid index?"}
+{"id": "dev_amb_002", "class": "ambiguous", "category": "programming", "prompt": "I need the exact console output from a JavaScript snippet. Can you trace the snippet for me?"}
+{"id": "dev_amb_003", "class": "ambiguous", "category": "programming", "prompt": "Write a Python function that accepts only valid employee badge codes for our office."}
+{"id": "dev_amb_004", "class": "ambiguous", "category": "programming", "prompt": "Please translate my parse_record function from Python to JavaScript while keeping its behavior the same."}
+{"id": "dev_amb_005", "class": "ambiguous", "category": "programming", "prompt": "Our merge routine combines records by account_id. For these two records, return the one the routine should keep: {\"account_id\": 7, \"name\": \"Mira\"} and {\"account_id\": 7, \"name\": \"Mina\"}."}
+{"id": "dev_amb_006", "class": "ambiguous", "category": "programming", "prompt": "Fill in the return expression: def shipping_label(name, street, city): return ____. It must match the exact label format used by our printer."}
+{"id": "dev_amb_007", "class": "ambiguous", "category": "programming", "prompt": "Does the call transform([2, 5, 8]) return a list or modify its argument in place?"}
+{"id": "dev_amb_008", "class": "ambiguous", "category": "programming", "prompt": "A unit test expects my normalize_name function to return \"ana maria\", but it fails. Tell me the smallest change needed to fix the function."}
+{"id": "dev_amb_009", "class": "ambiguous", "category": "programming", "prompt": "What integer does this expression produce: counter + len(queue)?"}
+{"id": "dev_amb_010", "class": "ambiguous", "category": "programming", "prompt": "Generate the exact Python dictionary our handler should return when a request is rejected."}
+{"id": "dev_amb_011", "class": "ambiguous", "category": "data_formats", "prompt": "Convert the date string 03/04/2025 to ISO date format for the record I am importing."}
+{"id": "dev_amb_012", "class": "ambiguous", "category": "data_formats", "prompt": "Here is a row from our export: amber;12;active. Convert it into a JSON object using the export's actual column names."}
+{"id": "dev_amb_013", "class": "ambiguous", "category": "data_formats", "prompt": "Convert the timestamp 2025-06-10 09:00:00 into UTC."}
+{"id": "dev_amb_014", "class": "ambiguous", "category": "data_formats", "prompt": "Our JSON file contains several nested arrays. What value is at the path customer.orders[1].total?"}
+{"id": "dev_amb_015", "class": "ambiguous", "category": "data_formats", "prompt": "The byte sequence C3 A9 is a name field from an old file. Decode it to the intended text."}
+{"id": "dev_amb_016", "class": "ambiguous", "category": "data_formats", "prompt": "Convert the ID field \"0042\" into the correct JSON type for our API."}
+{"id": "dev_amb_017", "class": "ambiguous", "category": "data_formats", "prompt": "Flatten the XML purchase record into the CSV column order required by our importer."}
+{"id": "dev_amb_018", "class": "ambiguous", "category": "data_formats", "prompt": "In our data exchange, does an empty field mean zero, an empty string, or a missing value?"}
+{"id": "dev_amb_019", "class": "ambiguous", "category": "data_formats", "prompt": "Reformat this binary flag field as its decimal value: 101101. The sender uses a signed representation."}
+{"id": "dev_amb_020", "class": "ambiguous", "category": "data_formats", "prompt": "The CSV export contains a quoted description that spans several lines. How many records are in the export?"}
+{"id": "dev_amb_021", "class": "ambiguous", "category": "spreadsheets", "prompt": "What number will the formula =SUM(B2:B6) return in my workbook?"}
+{"id": "dev_amb_022", "class": "ambiguous", "category": "spreadsheets", "prompt": "Write the exact spreadsheet formula for the profit column in my sales sheet, using its existing column letters."}
+{"id": "dev_amb_023", "class": "ambiguous", "category": "spreadsheets", "prompt": "How many rows in my attendance sheet have the status \"absent\"?"}
+{"id": "dev_amb_024", "class": "ambiguous", "category": "spreadsheets", "prompt": "I copied a formula one column to the right. What formula is now in the destination cell?"}
+{"id": "dev_amb_025", "class": "ambiguous", "category": "spreadsheets", "prompt": "Our bonus sheet gives each employee a rate based on their sales tier. What bonus should an employee with 18,000 in sales receive?"}
+{"id": "dev_amb_026", "class": "ambiguous", "category": "spreadsheets", "prompt": "Tell me the value returned by =VLOOKUP(\"M7\",A2:C20,3,FALSE) in this workbook."}
+{"id": "dev_amb_027", "class": "ambiguous", "category": "spreadsheets", "prompt": "My spreadsheet shows #DIV/0! in the total column. Which cell reference do I need to fix?"}
+{"id": "dev_amb_028", "class": "ambiguous", "category": "spreadsheets", "prompt": "Build a conditional-formatting formula that marks overdue rows in my task sheet."}
+{"id": "dev_amb_029", "class": "ambiguous", "category": "spreadsheets", "prompt": "A spreadsheet cell contains 04/05/2025 as text. Convert it to the actual date the sender intended."}
+{"id": "dev_amb_030", "class": "ambiguous", "category": "spreadsheets", "prompt": "Calculate the weighted average of the scores in my grading sheet."}
+{"id": "dev_amb_031", "class": "ambiguous", "category": "files_and_commands", "prompt": "What exact filenames will the shell pattern reports/*.csv match in my project?"}
+{"id": "dev_amb_032", "class": "ambiguous", "category": "files_and_commands", "prompt": "How many bytes are in the three log files in my working directory altogether?"}
+{"id": "dev_amb_033", "class": "ambiguous", "category": "files_and_commands", "prompt": "What output does head -n 3 notes.txt produce for my notes file?"}
+{"id": "dev_amb_034", "class": "ambiguous", "category": "files_and_commands", "prompt": "I ran grep -n \"error\" service.log. Which numbered lines should it print?"}
+{"id": "dev_amb_035", "class": "ambiguous", "category": "files_and_commands", "prompt": "What absolute path does ../assets/logo.svg resolve to from my current directory?"}
+{"id": "dev_amb_036", "class": "ambiguous", "category": "files_and_commands", "prompt": "What is the SHA-256 checksum of the file I downloaded?"}
+{"id": "dev_amb_037", "class": "ambiguous", "category": "files_and_commands", "prompt": "Two text files were compared with diff. Tell me which lines were added in the second file."}
+{"id": "dev_amb_038", "class": "ambiguous", "category": "files_and_commands", "prompt": "List the files located directly inside the archive I received."}
+{"id": "dev_amb_039", "class": "ambiguous", "category": "files_and_commands", "prompt": "What does echo \"$PROJECT_TAG\" print in my terminal session?"}
+{"id": "dev_amb_040", "class": "ambiguous", "category": "files_and_commands", "prompt": "What extension does the output file in our build script use?"}
+{"id": "dev_amb_041", "class": "ambiguous", "category": "algorithms", "prompt": "For my weighted graph, find the cheapest route from node A to node F."}
+{"id": "dev_amb_042", "class": "ambiguous", "category": "algorithms", "prompt": "I have an undirected graph with edges A-B, A-C, B-D, and C-E. Give its breadth-first traversal, processing each node's neighbors alphabetically."}
+{"id": "dev_amb_043", "class": "ambiguous", "category": "algorithms", "prompt": "Which items belong in the optimal 0/1 knapsack solution? The items have (weight, value) pairs (2, 5), (3, 7), and (4, 8)."}
+{"id": "dev_amb_044", "class": "ambiguous", "category": "algorithms", "prompt": "For this hash table, give the bucket index of key 37."}
+{"id": "dev_amb_045", "class": "ambiguous", "category": "algorithms", "prompt": "How many comparisons will the search perform before it finds the target in my sorted array?"}
+{"id": "dev_amb_046", "class": "ambiguous", "category": "algorithms", "prompt": "Our run-length encoder writes each character followed by its decimal count, with no separators. What exact encoded output should it produce for my input string?"}
+{"id": "dev_amb_047", "class": "ambiguous", "category": "algorithms", "prompt": "What is the inorder traversal of the binary tree in my diagram?"}
+{"id": "dev_amb_048", "class": "ambiguous", "category": "algorithms", "prompt": "Return the final queue after processing our task scheduler's operations."}
+{"id": "dev_amb_049", "class": "ambiguous", "category": "algorithms", "prompt": "What integer does the recurrence T(n) = T(n-1) + 3 give at n = 5?"}
+{"id": "dev_amb_050", "class": "ambiguous", "category": "algorithms", "prompt": "Using dynamic programming, find the minimum edit distance between our two strings, where inserting, deleting, or substituting one character each costs 1."}
+{"id": "dev_amb_051", "class": "ambiguous", "category": "measurement", "prompt": "On a printed site plan, the scale bar is 4 cm long and the distance between two gates is 7 cm. What is the real distance between the gates in meters?"}
+{"id": "dev_amb_052", "class": "ambiguous", "category": "measurement", "prompt": "A sensor measures a 9 cm air gap between the lid and the liquid in our storage tank. How many liters of liquid are in the tank?"}
+{"id": "dev_amb_053", "class": "ambiguous", "category": "measurement", "prompt": "A spool of copper wire weighs 2.4 kg on the scale. How many meters of wire are on it?"}
+{"id": "dev_amb_054", "class": "ambiguous", "category": "measurement", "prompt": "The shadow of a vertical outdoor sculpture is 2 meters long. How tall is the sculpture?"}
+{"id": "dev_amb_055", "class": "ambiguous", "category": "measurement", "prompt": "The display on my digital caliper reads 0.37. What length should I enter in the millimeter column of my worksheet?"}
+{"id": "dev_amb_056", "class": "ambiguous", "category": "measurement", "prompt": "A metal strip is 0.6 meters long at 20 degrees Celsius. What will its length be at 80 degrees Celsius?"}
+{"id": "dev_amb_057", "class": "ambiguous", "category": "measurement", "prompt": "After subtracting the container weight, a paint sample has a mass of 1.8 kg. What volume in liters should I record?"}
+{"id": "dev_amb_058", "class": "ambiguous", "category": "measurement", "prompt": "A displacement encoder recorded 1,280 counts while a carriage moved along a straight rail. How far did the carriage travel in millimeters?"}
+{"id": "dev_amb_059", "class": "ambiguous", "category": "measurement", "prompt": "I measured a board as 23 cm long with a ruler that has a constant zero-offset error. What is the corrected length?"}
+{"id": "dev_amb_060", "class": "ambiguous", "category": "measurement", "prompt": "The full width of a specimen spans 480 pixels in a microscope image. What is that width in micrometers?"}
+{"id": "dev_amb_061", "class": "ambiguous", "category": "probability_and_statistics", "prompt": "In a survey, 60% of first-year respondents and 80% of second-year respondents chose option A. What percentage of all respondents chose A?"}
+{"id": "dev_amb_062", "class": "ambiguous", "category": "probability_and_statistics", "prompt": "I hold 8 tickets in a raffle that draws one winning ticket uniformly from all tickets sold. What is my probability of winning?"}
+{"id": "dev_amb_063", "class": "ambiguous", "category": "probability_and_statistics", "prompt": "Box A has 4 red and 6 blue balls; box B has 8 red and 2 blue balls. We select one box and then draw a ball uniformly from that box. What is the probability of drawing red?"}
+{"id": "dev_amb_064", "class": "ambiguous", "category": "probability_and_statistics", "prompt": "A device outputs A with probability 0.6 on its first use. Its second output depends on the first. What is the probability that both outputs are A?"}
+{"id": "dev_amb_065", "class": "ambiguous", "category": "probability_and_statistics", "prompt": "Four people recorded their waiting times. The first three times were 12, 18, and 26 minutes. What was the mean waiting time for all four people?"}
+{"id": "dev_amb_066", "class": "ambiguous", "category": "probability_and_statistics", "prompt": "My test score was 74 and the class mean was 65. What is the z-score of my result?"}
+{"id": "dev_amb_067", "class": "ambiguous", "category": "probability_and_statistics", "prompt": "A sample of 25 package weights has a mean of 20 grams. Give the numerical endpoints of a 95% confidence interval for the population mean."}
+{"id": "dev_amb_068", "class": "ambiguous", "category": "probability_and_statistics", "prompt": "My quiz average is 80 and my final-exam score is 90. Those are the only two components of the course grade. What is my final course percentage?"}
+{"id": "dev_amb_069", "class": "ambiguous", "category": "probability_and_statistics", "prompt": "A spinner has eight sectors labeled 1 through 8, and the sectors are unequal in size. What is the probability of landing on an even number?"}
+{"id": "dev_amb_070", "class": "ambiguous", "category": "probability_and_statistics", "prompt": "Among 40 club members, 20 cycle to campus and 15 take the bus. What fraction of the club uses both methods?"}
+{"id": "dev_amb_071", "class": "ambiguous", "category": "scheduling", "prompt": "Our rehearsal must end at 18:30. Equipment setup takes 20 minutes and must finish before the rehearsal begins. What is the latest time we can begin setup?"}
+{"id": "dev_amb_072", "class": "ambiguous", "category": "scheduling", "prompt": "Our online meeting is at 09:00 on March 10, 2027, in the organizer's local time. What time should I put on my calendar in UTC?"}
+{"id": "dev_amb_073", "class": "ambiguous", "category": "scheduling", "prompt": "A courier leaves the depot at 08:00, spends 15 minutes at stop A and 25 minutes at stop B, then returns to the depot. What is the earliest possible return time?"}
+{"id": "dev_amb_074", "class": "ambiguous", "category": "scheduling", "prompt": "My project plan specifies which of three tasks may run at the same time. The tasks take 2 hours, 3 hours, and 1 hour, and all must be finished by 17:00. What is the latest time the project can start?"}
+{"id": "dev_amb_075", "class": "ambiguous", "category": "scheduling", "prompt": "A workshop begins at 13:00 and has four presentations with five-minute changeovers between them. At what time will the workshop end?"}
+{"id": "dev_amb_076", "class": "ambiguous", "category": "scheduling", "prompt": "A flight leaves at 14:00 UTC and arrives at 18:20 local time at its destination on the same calendar date. How long is the flight?"}
+{"id": "dev_amb_077", "class": "ambiguous", "category": "scheduling", "prompt": "Our equipment inspection repeats every nine days. On which calendar date is the next inspection due?"}
+{"id": "dev_amb_078", "class": "ambiguous", "category": "scheduling", "prompt": "A room is available from 08:00 to 12:00. Talks last 30 minutes each, with a required break after every pair of talks. How many complete talks fit in the booking?"}
+{"id": "dev_amb_079", "class": "ambiguous", "category": "scheduling", "prompt": "My train arrives at platform 2 at 10:12, and the connecting train departs platform 9 at 10:20. How many minutes will I have to spare after reaching platform 9?"}
+{"id": "dev_amb_080", "class": "ambiguous", "category": "scheduling", "prompt": "One technician must spend 30 minutes checking cameras and then 20 minutes checking sound. The event begins at 09:00. What is the earliest time the sound check can begin?"}
+{"id": "dev_amb_081", "class": "ambiguous", "category": "comparing_options", "prompt": "Parcel plan A charges $3 per parcel with no monthly fee. Plan B charges $20 per month plus $0.50 per parcel. Which plan gives me the lower bill for this month?"}
+{"id": "dev_amb_082", "class": "ambiguous", "category": "comparing_options", "prompt": "Projector A produces 800 lumens and projector B produces 700 lumens. Which has the higher light output per watt of electrical power?"}
+{"id": "dev_amb_083", "class": "ambiguous", "category": "comparing_options", "prompt": "Battery A is labeled 4,000 mAh and battery B is labeled 45 Wh. Which stores more energy?"}
+{"id": "dev_amb_084", "class": "ambiguous", "category": "comparing_options", "prompt": "Trail A is 6 km long with 300 meters of ascent, while trail B is 8 km long with 100 meters of ascent. Which trail will take me less time to walk?"}
+{"id": "dev_amb_085", "class": "ambiguous", "category": "comparing_options", "prompt": "Printer A charges $45 setup plus $0.06 per page, and printer B charges $20 setup plus $0.09 per page. Which is cheaper for printing my booklets?"}
+{"id": "dev_amb_086", "class": "ambiguous", "category": "comparing_options", "prompt": "Jar A contains 500 grams of glue and costs $6. Jar B contains 750 milliliters of a different glue and costs $7. Which is cheaper per gram?"}
+{"id": "dev_amb_087", "class": "ambiguous", "category": "comparing_options", "prompt": "Runner A completes 12 laps in 10 minutes on one track. Runner B completes 15 laps in 12 minutes on a different track. Which runner has the higher average speed?"}
+{"id": "dev_amb_088", "class": "ambiguous", "category": "comparing_options", "prompt": "Machine A makes 100 parts per hour with a 3% defect rate. Machine B makes 110 parts per hour. Which produces more usable parts per hour?"}
+{"id": "dev_amb_089", "class": "ambiguous", "category": "comparing_options", "prompt": "Compression tool A produced an 80 MB archive, while tool B produced a 120 MB archive from a different source file. Which tool achieved the greater percentage reduction in file size?"}
+{"id": "dev_amb_090", "class": "ambiguous", "category": "comparing_options", "prompt": "Flour A lists 12 grams of protein per serving and flour B lists 9 grams per serving. Which has more protein per 100 grams of flour?"}
+{"id": "dev_amb_091", "class": "ambiguous", "category": "allocation_constraints", "prompt": "We have 36 free concert tickets for three student clubs and must divide them in proportion to each club's membership. How many tickets should each club receive?"}
+{"id": "dev_amb_092", "class": "ambiguous", "category": "allocation_constraints", "prompt": "We must buy exactly 30 folding chairs using a $600 budget. Supplier A sells packs of four and supplier B sells packs of six. Which mix of packs can we afford?"}
+{"id": "dev_amb_093", "class": "ambiguous", "category": "allocation_constraints", "prompt": "Twelve students must be divided into teams of the required equal size, with nobody left over. How many teams should I create?"}
+{"id": "dev_amb_094", "class": "ambiguous", "category": "allocation_constraints", "prompt": "Two workers process 3 and 2 identical requests per hour, respectively. We have 18 requests and need all of them finished by 17:00. How many should I assign to each worker?"}
+{"id": "dev_amb_095", "class": "ambiguous", "category": "allocation_constraints", "prompt": "We need to distribute 20 kg of rice into identical bags filled to their labeled capacity, without leaving any rice over. How many bags do we need?"}
+{"id": "dev_amb_096", "class": "ambiguous", "category": "allocation_constraints", "prompt": "Three simultaneous workshops need separate rooms. The available rooms hold 20, 30, and 40 people. Which room should I assign to the writing, robotics, and music workshops?"}
+{"id": "dev_amb_097", "class": "ambiguous", "category": "allocation_constraints", "prompt": "We have 20 liters of paint concentrate and need to use all of it in a mixture with water at the specified dilution ratio. How many liters of water should we allocate?"}
+{"id": "dev_amb_098", "class": "ambiguous", "category": "allocation_constraints", "prompt": "There are 100 meters of cable available for assembling identical kits. How many complete kits can we assemble without buying more cable?"}
+{"id": "dev_amb_099", "class": "ambiguous", "category": "allocation_constraints", "prompt": "A shuttle has 40 passenger seats, but some of those seats must be reserved for equipment. How many passengers can we assign to this trip?"}
+{"id": "dev_amb_100", "class": "ambiguous", "category": "allocation_constraints", "prompt": "Our morning shift and afternoon shift each require two workers. Assignments must respect our daily limit on shifts per worker. What is the minimum number of distinct workers we need to assign for the day?"}
+{"id": "dev_amb_101", "class": "ambiguous", "category": "rewriting_and_translation", "prompt": "Translate 'The package will arrive tomorrow' into the language listed in my course registration."}
+{"id": "dev_amb_102", "class": "ambiguous", "category": "rewriting_and_translation", "prompt": "Rewrite my opening paragraph so it sounds less repetitive."}
+{"id": "dev_amb_103", "class": "ambiguous", "category": "rewriting_and_translation", "prompt": "Rewrite 'Your appointment is at 2 p.m.' in the exact tone my teacher specified for this exercise."}
+{"id": "dev_amb_104", "class": "ambiguous", "category": "rewriting_and_translation", "prompt": "Translate the English word 'bank' into French using the meaning it has in my sentence."}
+{"id": "dev_amb_105", "class": "ambiguous", "category": "rewriting_and_translation", "prompt": "Turn the quoted statement in my draft into indirect speech while keeping its original meaning."}
+{"id": "dev_amb_106", "class": "ambiguous", "category": "rewriting_and_translation", "prompt": "Replace the underlined word in 'The old bridge crosses the narrow river' with a more vivid synonym."}
+{"id": "dev_amb_107", "class": "ambiguous", "category": "rewriting_and_translation", "prompt": "Shorten my application response to the character limit shown on the form."}
+{"id": "dev_amb_108", "class": "ambiguous", "category": "rewriting_and_translation", "prompt": "Translate my club's name into Spanish without changing its meaning."}
+{"id": "dev_amb_109", "class": "ambiguous", "category": "rewriting_and_translation", "prompt": "Rewrite 'They will deliver it there' with the specific people, object, and place I mean instead of pronouns."}
+{"id": "dev_amb_110", "class": "ambiguous", "category": "rewriting_and_translation", "prompt": "Rewrite my roommate's message as a polite request."}
+{"id": "dev_amb_111", "class": "ambiguous", "category": "reading_and_references", "prompt": "In the story I uploaded, why does Nila return to the station?"}
+{"id": "dev_amb_112", "class": "ambiguous", "category": "reading_and_references", "prompt": "Which of the two passages in my worksheet gives stronger evidence for the author's claim?"}
+{"id": "dev_amb_113", "class": "ambiguous", "category": "reading_and_references", "prompt": "According to the final paragraph of the report, what caused the power failure?"}
+{"id": "dev_amb_114", "class": "ambiguous", "category": "reading_and_references", "prompt": "In \"The vase bumped the lamp, and it fell,\" replace \"it\" with the object that actually fell."}
+{"id": "dev_amb_115", "class": "ambiguous", "category": "reading_and_references", "prompt": "Based only on the article my teacher assigned, state the author's central argument in one sentence."}
+{"id": "dev_amb_116", "class": "ambiguous", "category": "reading_and_references", "prompt": "Which character speaks last in our assigned chapter?"}
+{"id": "dev_amb_117", "class": "ambiguous", "category": "reading_and_references", "prompt": "What year does the museum brochure say the west wing opened?"}
+{"id": "dev_amb_118", "class": "ambiguous", "category": "reading_and_references", "prompt": "Did Mara mean approval or sarcasm when she replied 'Fine' to me?"}
+{"id": "dev_amb_119", "class": "ambiguous", "category": "reading_and_references", "prompt": "Why did the writer italicize the last line of the poem on my worksheet?"}
+{"id": "dev_amb_120", "class": "ambiguous", "category": "reading_and_references", "prompt": "How does our reading define the word 'balance'?"}
+{"id": "dev_amb_121", "class": "ambiguous", "category": "extraction_and_formatting", "prompt": "Return the names in my spreadsheet as a JSON array."}
+{"id": "dev_amb_122", "class": "ambiguous", "category": "extraction_and_formatting", "prompt": "Convert '03/04/2027' to an ISO calendar date while preserving the date the writer intended."}
+{"id": "dev_amb_123", "class": "ambiguous", "category": "extraction_and_formatting", "prompt": "Extract every email address from my registration form."}
+{"id": "dev_amb_124", "class": "ambiguous", "category": "extraction_and_formatting", "prompt": "Group these book titles using the categories in my rubric: 'The Quiet Harbor', 'Robots at Noon', 'A History of Bridges'."}
+{"id": "dev_amb_125", "class": "ambiguous", "category": "extraction_and_formatting", "prompt": "Sort 12, 4, 19, and 7 using the ordering rule my instructor specified."}
+{"id": "dev_amb_126", "class": "ambiguous", "category": "extraction_and_formatting", "prompt": "Return only the winning team's final score from the match report."}
+{"id": "dev_amb_127", "class": "ambiguous", "category": "extraction_and_formatting", "prompt": "Format my bibliography in the citation style required by the assignment."}
+{"id": "dev_amb_128", "class": "ambiguous", "category": "extraction_and_formatting", "prompt": "Turn the table on my worksheet into CSV, keeping the column order."}
+{"id": "dev_amb_129", "class": "ambiguous", "category": "extraction_and_formatting", "prompt": "Give me the third item from the list I wrote in my notebook."}
+{"id": "dev_amb_130", "class": "ambiguous", "category": "extraction_and_formatting", "prompt": "Convert these measurements to centimeters: 8, 13, 21."}
+{"id": "dev_amb_131", "class": "ambiguous", "category": "everyday_communication", "prompt": "Write a message telling my classmates the exact room and start time of our study session."}
+{"id": "dev_amb_132", "class": "ambiguous", "category": "everyday_communication", "prompt": "Draft a reply answering my neighbor's question about which evening I am free to water their plants."}
+{"id": "dev_amb_133", "class": "ambiguous", "category": "everyday_communication", "prompt": "Write an invitation that includes the full venue address from my booking confirmation."}
+{"id": "dev_amb_134", "class": "ambiguous", "category": "everyday_communication", "prompt": "Write a text telling my roommate which shelf I put the spare mugs on."}
+{"id": "dev_amb_135", "class": "ambiguous", "category": "everyday_communication", "prompt": "Draft a message listing the dishes I have already decided to bring to the potluck."}
+{"id": "dev_amb_136", "class": "ambiguous", "category": "everyday_communication", "prompt": "Reply to 'Can you meet on Tuesday?' with my actual availability."}
+{"id": "dev_amb_137", "class": "ambiguous", "category": "everyday_communication", "prompt": "Write a correction to yesterday's announcement using the updated deadline in the email I received."}
+{"id": "dev_amb_138", "class": "ambiguous", "category": "everyday_communication", "prompt": "Draft a thank-you note mentioning the specific favor Rosa did for me."}
+{"id": "dev_amb_139", "class": "ambiguous", "category": "everyday_communication", "prompt": "Write a reply explaining the real reason I missed yesterday's rehearsal."}
+{"id": "dev_amb_140", "class": "ambiguous", "category": "everyday_communication", "prompt": "Write a note telling my housemate which of our two bins should hold the cardboard, according to our building's rules."}
+{"id": "dev_amb_141", "class": "ambiguous", "category": "creative_and_explanatory", "prompt": "Write a final stanza for the poem below, keeping its established rhyme scheme."}
+{"id": "dev_amb_142", "class": "ambiguous", "category": "creative_and_explanatory", "prompt": "Explain what the arrows in my diagram represent."}
+{"id": "dev_amb_143", "class": "ambiguous", "category": "creative_and_explanatory", "prompt": "Give me an everyday analogy for the concept highlighted in my notes."}
+{"id": "dev_amb_144", "class": "ambiguous", "category": "creative_and_explanatory", "prompt": "Continue my story from its final sentence, using only the characters already introduced."}
+{"id": "dev_amb_145", "class": "ambiguous", "category": "creative_and_explanatory", "prompt": "Write an acrostic whose initial letters spell the first name of the lead character I created."}
+{"id": "dev_amb_146", "class": "ambiguous", "category": "creative_and_explanatory", "prompt": "Explain why the result of our classroom demonstration happened."}
+{"id": "dev_amb_147", "class": "ambiguous", "category": "creative_and_explanatory", "prompt": "Create a slogan that includes the required phrase printed on my project rubric."}
+{"id": "dev_amb_148", "class": "ambiguous", "category": "creative_and_explanatory", "prompt": "Invent a new ending for the fable in my textbook that reverses its original lesson."}
+{"id": "dev_amb_149", "class": "ambiguous", "category": "creative_and_explanatory", "prompt": "Explain the second step of the solution my tutor wrote."}
+{"id": "dev_amb_150", "class": "ambiguous", "category": "creative_and_explanatory", "prompt": "Write a caption that accurately describes what the animal in my photo is doing."}

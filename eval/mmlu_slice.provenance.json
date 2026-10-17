@@ -1,0 +1,1078 @@
+{
+  "purpose": "Public development-only retention check; not the course hidden test slice.",
+  "dataset": "cais/mmlu",
+  "dataset_url": "https://huggingface.co/datasets/cais/mmlu",
+  "original_repository": "https://github.com/hendrycks/test",
+  "license": "MIT (as declared by the dataset repository)",
+  "revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+  "config": "all",
+  "split": "validation",
+  "source_url": "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/all/validation-00000-of-00001.parquet",
+  "source_sha256": "66cdf0b090ccb657d18d13cd81e31fdc55c3467da9642ffb178653268a97c8ef",
+  "source_count": 1531,
+  "seed": 6604,
+  "n": 200,
+  "sampling": "3 per subject plus 1 for 29 seeded random subjects; unique question/choice records.",
+  "subject_counts": {
+    "abstract_algebra": 3,
+    "anatomy": 4,
+    "astronomy": 4,
+    "business_ethics": 3,
+    "clinical_knowledge": 3,
+    "college_biology": 3,
+    "college_chemistry": 4,
+    "college_computer_science": 4,
+    "college_mathematics": 3,
+    "college_medicine": 4,
+    "college_physics": 4,
+    "computer_security": 4,
+    "conceptual_physics": 3,
+    "econometrics": 3,
+    "electrical_engineering": 4,
+    "elementary_mathematics": 4,
+    "formal_logic": 3,
+    "global_facts": 3,
+    "high_school_biology": 4,
+    "high_school_chemistry": 4,
+    "high_school_computer_science": 4,
+    "high_school_european_history": 4,
+    "high_school_geography": 4,
+    "high_school_government_and_politics": 3,
+    "high_school_macroeconomics": 4,
+    "high_school_mathematics": 3,
+    "high_school_microeconomics": 3,
+    "high_school_physics": 4,
+    "high_school_psychology": 4,
+    "high_school_statistics": 4,
+    "high_school_us_history": 4,
+    "high_school_world_history": 3,
+    "human_aging": 4,
+    "human_sexuality": 3,
+    "international_law": 3,
+    "jurisprudence": 3,
+    "logical_fallacies": 3,
+    "machine_learning": 3,
+    "management": 3,
+    "marketing": 4,
+    "medical_genetics": 4,
+    "miscellaneous": 3,
+    "moral_disputes": 3,
+    "moral_scenarios": 3,
+    "nutrition": 3,
+    "philosophy": 3,
+    "prehistory": 4,
+    "professional_accounting": 4,
+    "professional_law": 4,
+    "professional_medicine": 4,
+    "professional_psychology": 3,
+    "public_relations": 3,
+    "security_studies": 4,
+    "sociology": 3,
+    "us_foreign_policy": 3,
+    "virology": 4,
+    "world_religions": 4
+  },
+  "slice_sha256": "6bd06a1a8a9c93f300016ef1d2e30dc8b048712485e72767780791397bbf22d4",
+  "source_rows": [
+    {
+      "id": "mmlu_validation_0001",
+      "source_row": 1,
+      "subject": "abstract_algebra"
+    },
+    {
+      "id": "mmlu_validation_0003",
+      "source_row": 3,
+      "subject": "abstract_algebra"
+    },
+    {
+      "id": "mmlu_validation_0002",
+      "source_row": 2,
+      "subject": "abstract_algebra"
+    },
+    {
+      "id": "mmlu_validation_0021",
+      "source_row": 21,
+      "subject": "anatomy"
+    },
+    {
+      "id": "mmlu_validation_0024",
+      "source_row": 24,
+      "subject": "anatomy"
+    },
+    {
+      "id": "mmlu_validation_0017",
+      "source_row": 17,
+      "subject": "anatomy"
+    },
+    {
+      "id": "mmlu_validation_0020",
+      "source_row": 20,
+      "subject": "anatomy"
+    },
+    {
+      "id": "mmlu_validation_0034",
+      "source_row": 34,
+      "subject": "astronomy"
+    },
+    {
+      "id": "mmlu_validation_0025",
+      "source_row": 25,
+      "subject": "astronomy"
+    },
+    {
+      "id": "mmlu_validation_0028",
+      "source_row": 28,
+      "subject": "astronomy"
+    },
+    {
+      "id": "mmlu_validation_0040",
+      "source_row": 40,
+      "subject": "astronomy"
+    },
+    {
+      "id": "mmlu_validation_0045",
+      "source_row": 45,
+      "subject": "business_ethics"
+    },
+    {
+      "id": "mmlu_validation_0049",
+      "source_row": 49,
+      "subject": "business_ethics"
+    },
+    {
+      "id": "mmlu_validation_0050",
+      "source_row": 50,
+      "subject": "business_ethics"
+    },
+    {
+      "id": "mmlu_validation_0064",
+      "source_row": 64,
+      "subject": "clinical_knowledge"
+    },
+    {
+      "id": "mmlu_validation_0073",
+      "source_row": 73,
+      "subject": "clinical_knowledge"
+    },
+    {
+      "id": "mmlu_validation_0059",
+      "source_row": 59,
+      "subject": "clinical_knowledge"
+    },
+    {
+      "id": "mmlu_validation_0091",
+      "source_row": 91,
+      "subject": "college_biology"
+    },
+    {
+      "id": "mmlu_validation_0095",
+      "source_row": 95,
+      "subject": "college_biology"
+    },
+    {
+      "id": "mmlu_validation_0085",
+      "source_row": 85,
+      "subject": "college_biology"
+    },
+    {
+      "id": "mmlu_validation_0100",
+      "source_row": 100,
+      "subject": "college_chemistry"
+    },
+    {
+      "id": "mmlu_validation_0097",
+      "source_row": 97,
+      "subject": "college_chemistry"
+    },
+    {
+      "id": "mmlu_validation_0098",
+      "source_row": 98,
+      "subject": "college_chemistry"
+    },
+    {
+      "id": "mmlu_validation_0099",
+      "source_row": 99,
+      "subject": "college_chemistry"
+    },
+    {
+      "id": "mmlu_validation_0111",
+      "source_row": 111,
+      "subject": "college_computer_science"
+    },
+    {
+      "id": "mmlu_validation_0106",
+      "source_row": 106,
+      "subject": "college_computer_science"
+    },
+    {
+      "id": "mmlu_validation_0113",
+      "source_row": 113,
+      "subject": "college_computer_science"
+    },
+    {
+      "id": "mmlu_validation_0109",
+      "source_row": 109,
+      "subject": "college_computer_science"
+    },
+    {
+      "id": "mmlu_validation_0125",
+      "source_row": 125,
+      "subject": "college_mathematics"
+    },
+    {
+      "id": "mmlu_validation_0121",
+      "source_row": 121,
+      "subject": "college_mathematics"
+    },
+    {
+      "id": "mmlu_validation_0117",
+      "source_row": 117,
+      "subject": "college_mathematics"
+    },
+    {
+      "id": "mmlu_validation_0129",
+      "source_row": 129,
+      "subject": "college_medicine"
+    },
+    {
+      "id": "mmlu_validation_0140",
+      "source_row": 140,
+      "subject": "college_medicine"
+    },
+    {
+      "id": "mmlu_validation_0148",
+      "source_row": 148,
+      "subject": "college_medicine"
+    },
+    {
+      "id": "mmlu_validation_0137",
+      "source_row": 137,
+      "subject": "college_medicine"
+    },
+    {
+      "id": "mmlu_validation_0150",
+      "source_row": 150,
+      "subject": "college_physics"
+    },
+    {
+      "id": "mmlu_validation_0152",
+      "source_row": 152,
+      "subject": "college_physics"
+    },
+    {
+      "id": "mmlu_validation_0149",
+      "source_row": 149,
+      "subject": "college_physics"
+    },
+    {
+      "id": "mmlu_validation_0153",
+      "source_row": 153,
+      "subject": "college_physics"
+    },
+    {
+      "id": "mmlu_validation_0165",
+      "source_row": 165,
+      "subject": "computer_security"
+    },
+    {
+      "id": "mmlu_validation_0168",
+      "source_row": 168,
+      "subject": "computer_security"
+    },
+    {
+      "id": "mmlu_validation_0161",
+      "source_row": 161,
+      "subject": "computer_security"
+    },
+    {
+      "id": "mmlu_validation_0169",
+      "source_row": 169,
+      "subject": "computer_security"
+    },
+    {
+      "id": "mmlu_validation_0180",
+      "source_row": 180,
+      "subject": "conceptual_physics"
+    },
+    {
+      "id": "mmlu_validation_0182",
+      "source_row": 182,
+      "subject": "conceptual_physics"
+    },
+    {
+      "id": "mmlu_validation_0177",
+      "source_row": 177,
+      "subject": "conceptual_physics"
+    },
+    {
+      "id": "mmlu_validation_0205",
+      "source_row": 205,
+      "subject": "econometrics"
+    },
+    {
+      "id": "mmlu_validation_0197",
+      "source_row": 197,
+      "subject": "econometrics"
+    },
+    {
+      "id": "mmlu_validation_0201",
+      "source_row": 201,
+      "subject": "econometrics"
+    },
+    {
+      "id": "mmlu_validation_0224",
+      "source_row": 224,
+      "subject": "electrical_engineering"
+    },
+    {
+      "id": "mmlu_validation_0215",
+      "source_row": 215,
+      "subject": "electrical_engineering"
+    },
+    {
+      "id": "mmlu_validation_0209",
+      "source_row": 209,
+      "subject": "electrical_engineering"
+    },
+    {
+      "id": "mmlu_validation_0220",
+      "source_row": 220,
+      "subject": "electrical_engineering"
+    },
+    {
+      "id": "mmlu_validation_0225",
+      "source_row": 225,
+      "subject": "elementary_mathematics"
+    },
+    {
+      "id": "mmlu_validation_0235",
+      "source_row": 235,
+      "subject": "elementary_mathematics"
+    },
+    {
+      "id": "mmlu_validation_0260",
+      "source_row": 260,
+      "subject": "elementary_mathematics"
+    },
+    {
+      "id": "mmlu_validation_0236",
+      "source_row": 236,
+      "subject": "elementary_mathematics"
+    },
+    {
+      "id": "mmlu_validation_0279",
+      "source_row": 279,
+      "subject": "formal_logic"
+    },
+    {
+      "id": "mmlu_validation_0271",
+      "source_row": 271,
+      "subject": "formal_logic"
+    },
+    {
+      "id": "mmlu_validation_0267",
+      "source_row": 267,
+      "subject": "formal_logic"
+    },
+    {
+      "id": "mmlu_validation_0280",
+      "source_row": 280,
+      "subject": "global_facts"
+    },
+    {
+      "id": "mmlu_validation_0285",
+      "source_row": 285,
+      "subject": "global_facts"
+    },
+    {
+      "id": "mmlu_validation_0288",
+      "source_row": 288,
+      "subject": "global_facts"
+    },
+    {
+      "id": "mmlu_validation_0306",
+      "source_row": 306,
+      "subject": "high_school_biology"
+    },
+    {
+      "id": "mmlu_validation_0314",
+      "source_row": 314,
+      "subject": "high_school_biology"
+    },
+    {
+      "id": "mmlu_validation_0290",
+      "source_row": 290,
+      "subject": "high_school_biology"
+    },
+    {
+      "id": "mmlu_validation_0300",
+      "source_row": 300,
+      "subject": "high_school_biology"
+    },
+    {
+      "id": "mmlu_validation_0334",
+      "source_row": 334,
+      "subject": "high_school_chemistry"
+    },
+    {
+      "id": "mmlu_validation_0336",
+      "source_row": 336,
+      "subject": "high_school_chemistry"
+    },
+    {
+      "id": "mmlu_validation_0337",
+      "source_row": 337,
+      "subject": "high_school_chemistry"
+    },
+    {
+      "id": "mmlu_validation_0322",
+      "source_row": 322,
+      "subject": "high_school_chemistry"
+    },
+    {
+      "id": "mmlu_validation_0350",
+      "source_row": 350,
+      "subject": "high_school_computer_science"
+    },
+    {
+      "id": "mmlu_validation_0352",
+      "source_row": 352,
+      "subject": "high_school_computer_science"
+    },
+    {
+      "id": "mmlu_validation_0348",
+      "source_row": 348,
+      "subject": "high_school_computer_science"
+    },
+    {
+      "id": "mmlu_validation_0351",
+      "source_row": 351,
+      "subject": "high_school_computer_science"
+    },
+    {
+      "id": "mmlu_validation_0357",
+      "source_row": 357,
+      "subject": "high_school_european_history"
+    },
+    {
+      "id": "mmlu_validation_0356",
+      "source_row": 356,
+      "subject": "high_school_european_history"
+    },
+    {
+      "id": "mmlu_validation_0354",
+      "source_row": 354,
+      "subject": "high_school_european_history"
+    },
+    {
+      "id": "mmlu_validation_0362",
+      "source_row": 362,
+      "subject": "high_school_european_history"
+    },
+    {
+      "id": "mmlu_validation_0383",
+      "source_row": 383,
+      "subject": "high_school_geography"
+    },
+    {
+      "id": "mmlu_validation_0373",
+      "source_row": 373,
+      "subject": "high_school_geography"
+    },
+    {
+      "id": "mmlu_validation_0372",
+      "source_row": 372,
+      "subject": "high_school_geography"
+    },
+    {
+      "id": "mmlu_validation_0376",
+      "source_row": 376,
+      "subject": "high_school_geography"
+    },
+    {
+      "id": "mmlu_validation_0394",
+      "source_row": 394,
+      "subject": "high_school_government_and_politics"
+    },
+    {
+      "id": "mmlu_validation_0409",
+      "source_row": 409,
+      "subject": "high_school_government_and_politics"
+    },
+    {
+      "id": "mmlu_validation_0405",
+      "source_row": 405,
+      "subject": "high_school_government_and_politics"
+    },
+    {
+      "id": "mmlu_validation_0417",
+      "source_row": 417,
+      "subject": "high_school_macroeconomics"
+    },
+    {
+      "id": "mmlu_validation_0454",
+      "source_row": 454,
+      "subject": "high_school_macroeconomics"
+    },
+    {
+      "id": "mmlu_validation_0434",
+      "source_row": 434,
+      "subject": "high_school_macroeconomics"
+    },
+    {
+      "id": "mmlu_validation_0432",
+      "source_row": 432,
+      "subject": "high_school_macroeconomics"
+    },
+    {
+      "id": "mmlu_validation_0477",
+      "source_row": 477,
+      "subject": "high_school_mathematics"
+    },
+    {
+      "id": "mmlu_validation_0480",
+      "source_row": 480,
+      "subject": "high_school_mathematics"
+    },
+    {
+      "id": "mmlu_validation_0466",
+      "source_row": 466,
+      "subject": "high_school_mathematics"
+    },
+    {
+      "id": "mmlu_validation_0504",
+      "source_row": 504,
+      "subject": "high_school_microeconomics"
+    },
+    {
+      "id": "mmlu_validation_0498",
+      "source_row": 498,
+      "subject": "high_school_microeconomics"
+    },
+    {
+      "id": "mmlu_validation_0496",
+      "source_row": 496,
+      "subject": "high_school_microeconomics"
+    },
+    {
+      "id": "mmlu_validation_0515",
+      "source_row": 515,
+      "subject": "high_school_physics"
+    },
+    {
+      "id": "mmlu_validation_0519",
+      "source_row": 519,
+      "subject": "high_school_physics"
+    },
+    {
+      "id": "mmlu_validation_0526",
+      "source_row": 526,
+      "subject": "high_school_physics"
+    },
+    {
+      "id": "mmlu_validation_0514",
+      "source_row": 514,
+      "subject": "high_school_physics"
+    },
+    {
+      "id": "mmlu_validation_0586",
+      "source_row": 586,
+      "subject": "high_school_psychology"
+    },
+    {
+      "id": "mmlu_validation_0585",
+      "source_row": 585,
+      "subject": "high_school_psychology"
+    },
+    {
+      "id": "mmlu_validation_0583",
+      "source_row": 583,
+      "subject": "high_school_psychology"
+    },
+    {
+      "id": "mmlu_validation_0540",
+      "source_row": 540,
+      "subject": "high_school_psychology"
+    },
+    {
+      "id": "mmlu_validation_0598",
+      "source_row": 598,
+      "subject": "high_school_statistics"
+    },
+    {
+      "id": "mmlu_validation_0595",
+      "source_row": 595,
+      "subject": "high_school_statistics"
+    },
+    {
+      "id": "mmlu_validation_0592",
+      "source_row": 592,
+      "subject": "high_school_statistics"
+    },
+    {
+      "id": "mmlu_validation_0608",
+      "source_row": 608,
+      "subject": "high_school_statistics"
+    },
+    {
+      "id": "mmlu_validation_0628",
+      "source_row": 628,
+      "subject": "high_school_us_history"
+    },
+    {
+      "id": "mmlu_validation_0623",
+      "source_row": 623,
+      "subject": "high_school_us_history"
+    },
+    {
+      "id": "mmlu_validation_0633",
+      "source_row": 633,
+      "subject": "high_school_us_history"
+    },
+    {
+      "id": "mmlu_validation_0613",
+      "source_row": 613,
+      "subject": "high_school_us_history"
+    },
+    {
+      "id": "mmlu_validation_0647",
+      "source_row": 647,
+      "subject": "high_school_world_history"
+    },
+    {
+      "id": "mmlu_validation_0654",
+      "source_row": 654,
+      "subject": "high_school_world_history"
+    },
+    {
+      "id": "mmlu_validation_0659",
+      "source_row": 659,
+      "subject": "high_school_world_history"
+    },
+    {
+      "id": "mmlu_validation_0670",
+      "source_row": 670,
+      "subject": "human_aging"
+    },
+    {
+      "id": "mmlu_validation_0682",
+      "source_row": 682,
+      "subject": "human_aging"
+    },
+    {
+      "id": "mmlu_validation_0671",
+      "source_row": 671,
+      "subject": "human_aging"
+    },
+    {
+      "id": "mmlu_validation_0668",
+      "source_row": 668,
+      "subject": "human_aging"
+    },
+    {
+      "id": "mmlu_validation_0688",
+      "source_row": 688,
+      "subject": "human_sexuality"
+    },
+    {
+      "id": "mmlu_validation_0686",
+      "source_row": 686,
+      "subject": "human_sexuality"
+    },
+    {
+      "id": "mmlu_validation_0694",
+      "source_row": 694,
+      "subject": "human_sexuality"
+    },
+    {
+      "id": "mmlu_validation_0707",
+      "source_row": 707,
+      "subject": "international_law"
+    },
+    {
+      "id": "mmlu_validation_0696",
+      "source_row": 696,
+      "subject": "international_law"
+    },
+    {
+      "id": "mmlu_validation_0703",
+      "source_row": 703,
+      "subject": "international_law"
+    },
+    {
+      "id": "mmlu_validation_0715",
+      "source_row": 715,
+      "subject": "jurisprudence"
+    },
+    {
+      "id": "mmlu_validation_0718",
+      "source_row": 718,
+      "subject": "jurisprudence"
+    },
+    {
+      "id": "mmlu_validation_0710",
+      "source_row": 710,
+      "subject": "jurisprudence"
+    },
+    {
+      "id": "mmlu_validation_0735",
+      "source_row": 735,
+      "subject": "logical_fallacies"
+    },
+    {
+      "id": "mmlu_validation_0723",
+      "source_row": 723,
+      "subject": "logical_fallacies"
+    },
+    {
+      "id": "mmlu_validation_0725",
+      "source_row": 725,
+      "subject": "logical_fallacies"
+    },
+    {
+      "id": "mmlu_validation_0745",
+      "source_row": 745,
+      "subject": "machine_learning"
+    },
+    {
+      "id": "mmlu_validation_0743",
+      "source_row": 743,
+      "subject": "machine_learning"
+    },
+    {
+      "id": "mmlu_validation_0740",
+      "source_row": 740,
+      "subject": "machine_learning"
+    },
+    {
+      "id": "mmlu_validation_0748",
+      "source_row": 748,
+      "subject": "management"
+    },
+    {
+      "id": "mmlu_validation_0751",
+      "source_row": 751,
+      "subject": "management"
+    },
+    {
+      "id": "mmlu_validation_0755",
+      "source_row": 755,
+      "subject": "management"
+    },
+    {
+      "id": "mmlu_validation_0778",
+      "source_row": 778,
+      "subject": "marketing"
+    },
+    {
+      "id": "mmlu_validation_0779",
+      "source_row": 779,
+      "subject": "marketing"
+    },
+    {
+      "id": "mmlu_validation_0776",
+      "source_row": 776,
+      "subject": "marketing"
+    },
+    {
+      "id": "mmlu_validation_0759",
+      "source_row": 759,
+      "subject": "marketing"
+    },
+    {
+      "id": "mmlu_validation_0787",
+      "source_row": 787,
+      "subject": "medical_genetics"
+    },
+    {
+      "id": "mmlu_validation_0791",
+      "source_row": 791,
+      "subject": "medical_genetics"
+    },
+    {
+      "id": "mmlu_validation_0786",
+      "source_row": 786,
+      "subject": "medical_genetics"
+    },
+    {
+      "id": "mmlu_validation_0785",
+      "source_row": 785,
+      "subject": "medical_genetics"
+    },
+    {
+      "id": "mmlu_validation_0821",
+      "source_row": 821,
+      "subject": "miscellaneous"
+    },
+    {
+      "id": "mmlu_validation_0866",
+      "source_row": 866,
+      "subject": "miscellaneous"
+    },
+    {
+      "id": "mmlu_validation_0827",
+      "source_row": 827,
+      "subject": "miscellaneous"
+    },
+    {
+      "id": "mmlu_validation_0893",
+      "source_row": 893,
+      "subject": "moral_disputes"
+    },
+    {
+      "id": "mmlu_validation_0889",
+      "source_row": 889,
+      "subject": "moral_disputes"
+    },
+    {
+      "id": "mmlu_validation_0898",
+      "source_row": 898,
+      "subject": "moral_disputes"
+    },
+    {
+      "id": "mmlu_validation_0975",
+      "source_row": 975,
+      "subject": "moral_scenarios"
+    },
+    {
+      "id": "mmlu_validation_1007",
+      "source_row": 1007,
+      "subject": "moral_scenarios"
+    },
+    {
+      "id": "mmlu_validation_0958",
+      "source_row": 958,
+      "subject": "moral_scenarios"
+    },
+    {
+      "id": "mmlu_validation_1033",
+      "source_row": 1033,
+      "subject": "nutrition"
+    },
+    {
+      "id": "mmlu_validation_1037",
+      "source_row": 1037,
+      "subject": "nutrition"
+    },
+    {
+      "id": "mmlu_validation_1027",
+      "source_row": 1027,
+      "subject": "nutrition"
+    },
+    {
+      "id": "mmlu_validation_1075",
+      "source_row": 1075,
+      "subject": "philosophy"
+    },
+    {
+      "id": "mmlu_validation_1067",
+      "source_row": 1067,
+      "subject": "philosophy"
+    },
+    {
+      "id": "mmlu_validation_1056",
+      "source_row": 1056,
+      "subject": "philosophy"
+    },
+    {
+      "id": "mmlu_validation_1113",
+      "source_row": 1113,
+      "subject": "prehistory"
+    },
+    {
+      "id": "mmlu_validation_1099",
+      "source_row": 1099,
+      "subject": "prehistory"
+    },
+    {
+      "id": "mmlu_validation_1106",
+      "source_row": 1106,
+      "subject": "prehistory"
+    },
+    {
+      "id": "mmlu_validation_1112",
+      "source_row": 1112,
+      "subject": "prehistory"
+    },
+    {
+      "id": "mmlu_validation_1148",
+      "source_row": 1148,
+      "subject": "professional_accounting"
+    },
+    {
+      "id": "mmlu_validation_1133",
+      "source_row": 1133,
+      "subject": "professional_accounting"
+    },
+    {
+      "id": "mmlu_validation_1140",
+      "source_row": 1140,
+      "subject": "professional_accounting"
+    },
+    {
+      "id": "mmlu_validation_1122",
+      "source_row": 1122,
+      "subject": "professional_accounting"
+    },
+    {
+      "id": "mmlu_validation_1205",
+      "source_row": 1205,
+      "subject": "professional_law"
+    },
+    {
+      "id": "mmlu_validation_1288",
+      "source_row": 1288,
+      "subject": "professional_law"
+    },
+    {
+      "id": "mmlu_validation_1191",
+      "source_row": 1191,
+      "subject": "professional_law"
+    },
+    {
+      "id": "mmlu_validation_1198",
+      "source_row": 1198,
+      "subject": "professional_law"
+    },
+    {
+      "id": "mmlu_validation_1344",
+      "source_row": 1344,
+      "subject": "professional_medicine"
+    },
+    {
+      "id": "mmlu_validation_1347",
+      "source_row": 1347,
+      "subject": "professional_medicine"
+    },
+    {
+      "id": "mmlu_validation_1339",
+      "source_row": 1339,
+      "subject": "professional_medicine"
+    },
+    {
+      "id": "mmlu_validation_1337",
+      "source_row": 1337,
+      "subject": "professional_medicine"
+    },
+    {
+      "id": "mmlu_validation_1396",
+      "source_row": 1396,
+      "subject": "professional_psychology"
+    },
+    {
+      "id": "mmlu_validation_1398",
+      "source_row": 1398,
+      "subject": "professional_psychology"
+    },
+    {
+      "id": "mmlu_validation_1385",
+      "source_row": 1385,
+      "subject": "professional_psychology"
+    },
+    {
+      "id": "mmlu_validation_1428",
+      "source_row": 1428,
+      "subject": "public_relations"
+    },
+    {
+      "id": "mmlu_validation_1429",
+      "source_row": 1429,
+      "subject": "public_relations"
+    },
+    {
+      "id": "mmlu_validation_1426",
+      "source_row": 1426,
+      "subject": "public_relations"
+    },
+    {
+      "id": "mmlu_validation_1444",
+      "source_row": 1444,
+      "subject": "security_studies"
+    },
+    {
+      "id": "mmlu_validation_1445",
+      "source_row": 1445,
+      "subject": "security_studies"
+    },
+    {
+      "id": "mmlu_validation_1447",
+      "source_row": 1447,
+      "subject": "security_studies"
+    },
+    {
+      "id": "mmlu_validation_1460",
+      "source_row": 1460,
+      "subject": "security_studies"
+    },
+    {
+      "id": "mmlu_validation_1474",
+      "source_row": 1474,
+      "subject": "sociology"
+    },
+    {
+      "id": "mmlu_validation_1476",
+      "source_row": 1476,
+      "subject": "sociology"
+    },
+    {
+      "id": "mmlu_validation_1478",
+      "source_row": 1478,
+      "subject": "sociology"
+    },
+    {
+      "id": "mmlu_validation_1484",
+      "source_row": 1484,
+      "subject": "us_foreign_policy"
+    },
+    {
+      "id": "mmlu_validation_1487",
+      "source_row": 1487,
+      "subject": "us_foreign_policy"
+    },
+    {
+      "id": "mmlu_validation_1483",
+      "source_row": 1483,
+      "subject": "us_foreign_policy"
+    },
+    {
+      "id": "mmlu_validation_1501",
+      "source_row": 1501,
+      "subject": "virology"
+    },
+    {
+      "id": "mmlu_validation_1495",
+      "source_row": 1495,
+      "subject": "virology"
+    },
+    {
+      "id": "mmlu_validation_1496",
+      "source_row": 1496,
+      "subject": "virology"
+    },
+    {
+      "id": "mmlu_validation_1510",
+      "source_row": 1510,
+      "subject": "virology"
+    },
+    {
+      "id": "mmlu_validation_1515",
+      "source_row": 1515,
+      "subject": "world_religions"
+    },
+    {
+      "id": "mmlu_validation_1522",
+      "source_row": 1522,
+      "subject": "world_religions"
+    },
+    {
+      "id": "mmlu_validation_1514",
+      "source_row": 1514,
+      "subject": "world_religions"
+    },
+    {
+      "id": "mmlu_validation_1524",
+      "source_row": 1524,
+      "subject": "world_religions"
+    }
+  ]
+}

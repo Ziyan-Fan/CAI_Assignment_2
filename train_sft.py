@@ -16,6 +16,8 @@ import argparse
 
 import torch
 from peft import LoraConfig, get_peft_model
+from torch.nn.utils.rnn import pad_sequence
+from torch.utils.data import DataLoader
 
 from configs.paths_config import SFT_CHECKPOINT_DIR
 from configs.train_config import (
@@ -93,7 +95,71 @@ def train_loop(model, tokenizer, dataset) -> None:
     Hyperparameters (SFT_BATCH_SIZE, SFT_EPOCHS, SFT_LEARNING_RATE, SFT_MAX_SEQ_LEN) are
     in configs/train_config.py -- yours to tune, not fixed by this skeleton.
     """
-    raise NotImplementedError("Implement the Part A SFT training loop.")
+    # Tokenize each example once, before starting the epochs.
+    training_examples = []
+    for row in dataset:
+        example = build_sft_example(row["messages"], tokenizer, SFT_MAX_SEQ_LEN)
+        # Skip examples where truncation removed all usable response tokens.
+        if (example["labels"][1:] != -100).any():
+            training_examples.append(example)
+
+    if not training_examples:
+        raise ValueError("No training examples have response tokens after truncation.")
+    print(f"Prepared {len(training_examples)} of {len(dataset)} examples for SFT.")
+
+    def collate_batch(examples):
+        # Pad to the longest sequence in this batch. Ignore padding in the loss.
+        return {
+            "input_ids": pad_sequence(
+                [example["input_ids"] for example in examples],
+                batch_first=True,
+                padding_value=tokenizer.pad_token_id,
+            ),
+            "attention_mask": pad_sequence(
+                [example["attention_mask"] for example in examples],
+                batch_first=True,
+                padding_value=0,
+            ),
+            "labels": pad_sequence(
+                [example["labels"] for example in examples],
+                batch_first=True,
+                padding_value=-100,
+            ),
+        }
+
+    train_loader = DataLoader(
+        training_examples,
+        batch_size=SFT_BATCH_SIZE,
+        shuffle=True,
+        collate_fn=collate_batch,
+    )
+
+    # PEFT freezes the base model, so only the LoRA weights are optimized.
+    trainable_parameters = [p for p in model.parameters() if p.requires_grad]
+    optimizer = torch.optim.AdamW(trainable_parameters, lr=SFT_LEARNING_RATE)
+    device = next(model.parameters()).device
+    model.train()
+
+    for epoch in range(SFT_EPOCHS):
+        total_loss = 0.0
+        for step, batch in enumerate(train_loader, start=1):
+            batch = {key: value.to(device) for key, value in batch.items()}
+
+            optimizer.zero_grad()
+            outputs = model(**batch, use_cache=False)
+            loss = outputs.loss
+            loss.backward()
+            optimizer.step()
+
+            loss_value = loss.item()
+            total_loss += loss_value
+            if step == 1 or step % 10 == 0 or step == len(train_loader):
+                print(
+                    f"Epoch {epoch + 1}/{SFT_EPOCHS}, "
+                    f"step {step}/{len(train_loader)}, loss: {loss_value:.4f}"
+                )
+
+        print(f"Epoch {epoch + 1} average loss: {total_loss / len(train_loader):.4f}")
 
 
 def main() -> None:

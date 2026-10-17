@@ -26,3 +26,13 @@ auth.json
 
 # System files
 .DS_Store
+
+# Temporary preference-data generation checkpoints
+*.partial.jsonl
+
+# Additional model checkpoint formats
+*.pt
+*.pth
+
+# Temporary logs
+*.log

@@ -1,0 +1,440 @@
+{
+  "behavioral_n_per_set": 150,
+  "mmlu_n": 200,
+  "judge_unchanged": {
+    "backend": "local_hf",
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "rubric_version": "1.0"
+  },
+  "runs": {
+    "base": {
+      "before": {
+        "ask_rate": 0.3466666666666667,
+        "answer_rate": 0.7733333333333333,
+        "mmlu_acc": null,
+        "label_counts": {
+          "ambiguous": {
+            "ask": 52,
+            "answer": 66,
+            "other": 32
+          },
+          "clear": {
+            "ask": 11,
+            "answer": 116,
+            "other": 23
+          }
+        }
+      },
+      "after": {
+        "ask_rate": 0.35333333333333333,
+        "answer_rate": 0.9333333333333333,
+        "mmlu_acc": 0.37,
+        "label_counts": {
+          "ambiguous": {
+            "ask": 53,
+            "answer": 90,
+            "other": 7
+          },
+          "clear": {
+            "ask": 5,
+            "answer": 140,
+            "other": 5
+          }
+        }
+      },
+      "ask_rate_change_pp": 0.6666666666666654,
+      "answer_rate_change_pp": 16.000000000000004,
+      "mmlu_correct": 74,
+      "mmlu_total": 200,
+      "mmlu_missing_parsed_letter": 43,
+      "mmlu_strict_single_letter_outputs": 4,
+      "mmlu_predictions": {
+        "none": 43,
+        "D": 36,
+        "A": 62,
+        "B": 24,
+        "C": 35
+      },
+      "mmlu_change_vs_base_pp": 0.0,
+      "behavioral_empty_outputs": 0,
+      "behavioral_assistant_prefixes": 0
+    },
+    "sft": {
+      "before": {
+        "ask_rate": 0.52,
+        "answer_rate": 0.4266666666666667,
+        "mmlu_acc": null,
+        "label_counts": {
+          "ambiguous": {
+            "ask": 78,
+            "answer": 14,
+            "other": 58
+          },
+          "clear": {
+            "ask": 15,
+            "answer": 64,
+            "other": 71
+          }
+        }
+      },
+      "after": {
+        "ask_rate": 0.8333333333333334,
+        "answer_rate": 0.6266666666666667,
+        "mmlu_acc": 0.28,
+        "label_counts": {
+          "ambiguous": {
+            "ask": 125,
+            "answer": 21,
+            "other": 4
+          },
+          "clear": {
+            "ask": 50,
+            "answer": 94,
+            "other": 6
+          }
+        }
+      },
+      "ask_rate_change_pp": 31.333333333333336,
+      "answer_rate_change_pp": 20.0,
+      "mmlu_correct": 56,
+      "mmlu_total": 200,
+      "mmlu_missing_parsed_letter": 56,
+      "mmlu_strict_single_letter_outputs": 17,
+      "mmlu_predictions": {
+        "none": 56,
+        "A": 63,
+        "B": 61,
+        "D": 10,
+        "C": 10
+      },
+      "mmlu_change_vs_base_pp": -8.999999999999996,
+      "behavioral_empty_outputs": 0,
+      "behavioral_assistant_prefixes": 0
+    },
+    "dpo_beta_0.05": {
+      "before": {
+        "ask_rate": 0.7133333333333334,
+        "answer_rate": 0.2733333333333333,
+        "mmlu_acc": null,
+        "label_counts": {
+          "ambiguous": {
+            "ask": 107,
+            "answer": 7,
+            "other": 36
+          },
+          "clear": {
+            "ask": 40,
+            "answer": 41,
+            "other": 69
+          }
+        },
+        "beta": 0.05
+      },
+      "after": {
+        "ask_rate": 0.9733333333333334,
+        "answer_rate": 0.2733333333333333,
+        "mmlu_acc": 0.19,
+        "label_counts": {
+          "ambiguous": {
+            "ask": 146,
+            "answer": 3,
+            "other": 1
+          },
+          "clear": {
+            "ask": 105,
+            "answer": 41,
+            "other": 4
+          }
+        },
+        "beta": 0.05
+      },
+      "ask_rate_change_pp": 26.0,
+      "answer_rate_change_pp": 0.0,
+      "mmlu_correct": 38,
+      "mmlu_total": 200,
+      "mmlu_missing_parsed_letter": 111,
+      "mmlu_strict_single_letter_outputs": 0,
+      "mmlu_predictions": {
+        "none": 111,
+        "A": 33,
+        "B": 39,
+        "D": 9,
+        "C": 8
+      },
+      "mmlu_change_vs_base_pp": -18.0,
+      "behavioral_empty_outputs": 0,
+      "behavioral_assistant_prefixes": 0
+    },
+    "dpo_beta_0.1": {
+      "before": {
+        "ask_rate": 0.6733333333333333,
+        "answer_rate": 0.2,
+        "mmlu_acc": null,
+        "label_counts": {
+          "ambiguous": {
+            "ask": 101,
+            "answer": 8,
+            "other": 41
+          },
+          "clear": {
+            "ask": 47,
+            "answer": 30,
+            "other": 73
+          }
+        },
+        "beta": 0.1
+      },
+      "after": {
+        "ask_rate": 0.9733333333333334,
+        "answer_rate": 0.15333333333333332,
+        "mmlu_acc": 0.14,
+        "label_counts": {
+          "ambiguous": {
+            "ask": 146,
+            "answer": 1,
+            "other": 3
+          },
+          "clear": {
+            "ask": 122,
+            "answer": 23,
+            "other": 5
+          }
+        },
+        "beta": 0.1
+      },
+      "ask_rate_change_pp": 30.000000000000004,
+      "answer_rate_change_pp": -4.666666666666669,
+      "mmlu_correct": 28,
+      "mmlu_total": 200,
+      "mmlu_missing_parsed_letter": 124,
+      "mmlu_strict_single_letter_outputs": 0,
+      "mmlu_predictions": {
+        "none": 124,
+        "A": 31,
+        "B": 32,
+        "D": 8,
+        "C": 5
+      },
+      "mmlu_change_vs_base_pp": -23.0,
+      "behavioral_empty_outputs": 0,
+      "behavioral_assistant_prefixes": 0
+    },
+    "dpo_beta_0.5": {
+      "before": {
+        "ask_rate": 0.58,
+        "answer_rate": 0.35333333333333333,
+        "mmlu_acc": null,
+        "label_counts": {
+          "ambiguous": {
+            "ask": 87,
+            "answer": 12,
+            "other": 51
+          },
+          "clear": {
+            "ask": 25,
+            "answer": 53,
+            "other": 72
+          }
+        },
+        "beta": 0.5
+      },
+      "after": {
+        "ask_rate": 0.9266666666666666,
+        "answer_rate": 0.42,
+        "mmlu_acc": 0.25,
+        "label_counts": {
+          "ambiguous": {
+            "ask": 139,
+            "answer": 7,
+            "other": 4
+          },
+          "clear": {
+            "ask": 81,
+            "answer": 63,
+            "other": 6
+          }
+        },
+        "beta": 0.5
+      },
+      "ask_rate_change_pp": 34.66666666666667,
+      "answer_rate_change_pp": 6.666666666666665,
+      "mmlu_correct": 50,
+      "mmlu_total": 200,
+      "mmlu_missing_parsed_letter": 67,
+      "mmlu_strict_single_letter_outputs": 7,
+      "mmlu_predictions": {
+        "none": 67,
+        "A": 52,
+        "B": 53,
+        "C": 14,
+        "D": 14
+      },
+      "mmlu_change_vs_base_pp": -12.0,
+      "behavioral_empty_outputs": 0,
+      "behavioral_assistant_prefixes": 0
+    }
+  },
+  "generation_diagnostic": {
+    "original_right_padding_rows": 14,
+    "original_assistant_prefixes": 13,
+    "corrected_assistant_prefixes": 0,
+    "sample_size": 16,
+    "original_prompt_first_ids": [
+      128000,
+      128000,
+      128006,
+      9125,
+      128007
+    ],
+    "corrected_prompt_first_ids": [
+      128000,
+      128006,
+      9125,
+      128007,
+      271
+    ],
+    "singleton_matches": 4,
+    "singleton_count": 4,
+    "before_label_counts": {
+      "answer": 9,
+      "ask": 3,
+      "other": 4
+    },
+    "after_label_counts": {
+      "answer": 11,
+      "ask": 5
+    },
+    "examples": [
+      {
+        "id": "dev_clear_001",
+        "prompt": "What does this Python code print?\nvalues = [2, 4]\nother = values\nother.append(6)\nprint(values)",
+        "before_response": "assistant\n\nThe code prints [6].",
+        "before_label": "answer",
+        "after_response": "Line 2 updates the variable `other` to point to the new list `values`.",
+        "after_label": "answer"
+      },
+      {
+        "id": "dev_clear_002",
+        "prompt": "Write a Python function called initials that takes a nonempty name containing words separated by single spaces and returns the uppercase first letter of each word joined together. For example, \"ada lovelace\" should give \"AL\".",
+        "before_response": "assistant\n\n```python\ndef initials(name):\n    return ''.join(word[0].upper() for word in name.split() if word)",
+        "before_label": "answer",
+        "after_response": "```python\ndef initials(name):\n    return''.join(word[0].upper() for word in name.split())\n```\n\nThis function splits the input string into words, converts the first letter of each word to uppercase, and joins the results back together with spaces.",
+        "after_label": "answer"
+      },
+      {
+        "id": "dev_clear_003",
+        "prompt": "Find the value of result in this JavaScript code: const result = [3, 7, 2].filter(x => x > 2).map(x => x * 2);",
+        "before_response": "assistant\n\nThe result is 8.",
+        "before_label": "answer",
+        "after_response": "Line 2 calculates the new values for each element in the array. What is the goal of the code?",
+        "after_label": "answer"
+      },
+      {
+        "id": "dev_clear_004",
+        "prompt": "This Python function should count every occurrence of \"a\" but returns after checking the first character. Show the corrected function.\ndef count_a(text):\n    total = 0\n    for char in text:\n        if char == \"a\":\n            total += 1\n        return total",
+        "before_response": "The function should return 1 if the first character is \"a\", because it counts the first occurrence.",
+        "before_label": "answer",
+        "after_response": "The function should continue checking characters after the first \"a\".",
+        "after_label": "answer"
+      },
+      {
+        "id": "dev_clear_005",
+        "prompt": "Write a Python regular expression that matches an entire badge code consisting of exactly two uppercase ASCII letters, a hyphen, and four ASCII digits.",
+        "before_response": "assistant\n\nCould you provide an example of the regular expression?",
+        "before_label": "ask",
+        "after_response": "Can you provide the exact match or a sample string?",
+        "after_label": "ask"
+      },
+      {
+        "id": "dev_clear_006",
+        "prompt": "In Python, evaluate [n * n for n in range(5) if n % 2 == 0].",
+        "before_response": "assistant\n\n[2, 4, 6, 8]",
+        "before_label": "answer",
+        "after_response": "What is the Python expression to evaluate?",
+        "after_label": "ask"
+      },
+      {
+        "id": "dev_clear_007",
+        "prompt": "For this Python code, give both printed values.\ndef add_item(item, items=None):\n    if items is None:\n        items = []\n    items.append(item)\n    return items\nprint(add_item(\"x\"))\nprint(add_item(\"y\"))",
+        "before_response": "print(add_item(\"x\", [])); print(add_item(\"y\"))",
+        "before_label": "answer",
+        "after_response": "Line 2 prints \"items is None\" because the function is called without any arguments.",
+        "after_label": "answer"
+      },
+      {
+        "id": "dev_clear_008",
+        "prompt": "A JavaScript function must return true only when an integer n is between 10 and 20 inclusive. Write the function in JavaScript using Number.isInteger.",
+        "before_response": "assistant\n\nCould you provide the code snippet that fails the test?",
+        "before_label": "ask",
+        "after_response": "```javascript\nfunction check(n) {\n    return Number.isInteger(n) && 10 <= n && n <= 20;\n}\n\nconsole.log(check(11)); // false\nconsole.log(check(10)); // true\n```",
+        "after_label": "answer"
+      },
+      {
+        "id": "dev_clear_137",
+        "prompt": "Draft a reminder that our club photo is tomorrow at noon by the library steps.",
+        "before_response": "assistant\n\nReminder: our club photo is at noon tomorrow by the library steps.",
+        "before_label": "answer",
+        "after_response": "Reminder: the club photo is scheduled to take place tomorrow at noon outside the library steps.",
+        "after_label": "answer"
+      },
+      {
+        "id": "dev_clear_138",
+        "prompt": "Write a friendly sign asking people to put shared art supplies back after using them.",
+        "before_response": "assistant\n\nPlease put back any shared items after use. Thanks!",
+        "before_label": "other",
+        "after_response": "Welcome to our shared space! Please put your art supplies back after use. Thanks for helping keep things tidy!",
+        "after_label": "answer"
+      },
+      {
+        "id": "dev_clear_139",
+        "prompt": "Write a brief text to my roommate asking them to take their laundry out of the dryer.",
+        "before_response": "assistant\n\nHi, could you put the laundry away when you get a chance? Thanks.",
+        "before_label": "ask",
+        "after_response": "Could you paste the room's laundry pickup policy?",
+        "after_label": "ask"
+      },
+      {
+        "id": "dev_clear_140",
+        "prompt": "Reply to 'Can you help set up the chairs at 4?' Say that I can arrive at 4:30 instead.",
+        "before_response": "You can start arriving at 4:30.",
+        "before_label": "answer",
+        "after_response": "Could you start the meeting at 4:30?",
+        "after_label": "ask"
+      },
+      {
+        "id": "dev_clear_141",
+        "prompt": "Invent a name for a friendly dragon.",
+        "before_response": "assistant\n\nI'd like to call him Emberwynd.",
+        "before_label": "other",
+        "after_response": "I'd like to name the friendly dragon Emberwing.",
+        "after_label": "answer"
+      },
+      {
+        "id": "dev_clear_142",
+        "prompt": "Write a two-line poem about rain on a window.",
+        "before_response": "assistant\n\nRain falls on the windowpane.",
+        "before_label": "answer",
+        "after_response": "Rain falls on the windowpane,\ncreating a peaceful, calm scene.",
+        "after_label": "answer"
+      },
+      {
+        "id": "dev_clear_143",
+        "prompt": "Explain what a metaphor is using one simple example.",
+        "before_response": "assistant\n\nA metaphor is a figure of speech that compares two unlike things without using \"like\" or \"as.\"",
+        "before_label": "other",
+        "after_response": "What is the example you want explained?",
+        "after_label": "ask"
+      },
+      {
+        "id": "dev_clear_144",
+        "prompt": "Give me a playful slogan for a school gardening club.",
+        "before_response": "assistant\n\nGrow some fun!",
+        "before_label": "other",
+        "after_response": "Grow some fun!",
+        "after_label": "answer"
+      }
+    ]
+  },
+  "mmlu_provenance_path": "eval/mmlu_slice.provenance.json",
+  "interpretation_note": "Public development data, not official grader scores. MMLU includes answer-format failures under the unchanged parser."
+}

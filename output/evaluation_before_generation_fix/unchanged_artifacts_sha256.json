@@ -1,0 +1,12 @@
+{
+  "eval/judge.py": "dfca45831d04a10f6442278be9324ed8015cc0a606813fc251e334b56eb23868",
+  "eval/results_schema.json": "c4e553831eb145152b39212961d7c17662a1af0007ecaeba4ceac06286e63f5c",
+  "configs/evaluation_config.py": "d0fcef68986009a1b0604dbba16826ce4c5d4bb19602c6f8cd10bf71620ef200",
+  "data/preference_pairs.jsonl": "e563653a29d4ef16be3fba2986c0cbc88db1f6448a2faa4595b2ecc412022975",
+  "eval/held_out_ambiguous.jsonl": "c14014cfa62e1ca7ae203f04a434551c317b6dd2aa260b48bf53c800d133fa67",
+  "eval/held_out_clear.jsonl": "00341043049d739aa7814aac703d09e4ef15a7aa88c5497e184f4c254b1df527",
+  "checkpoints/sft/adapter_model.safetensors": "2bac1804b3cfcc619f572b9efb081a3c27e6aa846e41dfccd1ae9d6a1d02f71c",
+  "checkpoints/dpo/beta_0.05/adapter_model.safetensors": "dbd60d04bf9ab775a5a0faf90b91d5d7a4b32b3d99e410a3489811769a19f3fd",
+  "checkpoints/dpo/beta_0.1/adapter_model.safetensors": "fa4d09e06a5333af5e3155f78aa62de429367d917f5129d31e409f213b618f0d",
+  "checkpoints/dpo/beta_0.5/adapter_model.safetensors": "25987a63532d8143622bf4aca712a86037ec0a732357c4b4b1ac5c65b0274548"
+}
