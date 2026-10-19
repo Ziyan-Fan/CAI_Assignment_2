@@ -9,34 +9,26 @@ import torch
 
 
 def tokenize_with_response_mask(messages: list[dict], tokenizer, max_seq_len: int) -> dict:
+    """Tokenize a chat and supervise only its final assistant response.
+
+    Return one-dimensional long tensors ``input_ids``, ``attention_mask``, and
+    ``response_mask``. Input IDs are the full chat's first ``max_seq_len`` tokens;
+    attention is all ones. The response mask excludes the generation prompt and
+    all earlier turns, and includes the final end-of-turn token when retained.
+    Truncation may leave no response tokens; callers must handle that case.
+
+    The template's generation prompt must be an exact token prefix of the full
+    chat. A mismatch raises an error rather than guessing a response boundary.
     """
-    TODO (student): tokenizes one chat-formatted conversation and marks which tokens
-    belong to the final assistant turn. `messages` is a list of {"role", "content"}
-    dicts (user/assistant, alternating, ending on an assistant turn) -- see data_loader.py.
+    if not isinstance(messages, list) or not messages:
+        raise ValueError("messages must be a nonempty list of chat messages.")
+    if not isinstance(messages[-1], dict) or messages[-1].get("role") != "assistant":
+        raise ValueError("messages must end with an assistant turn.")
+    if isinstance(max_seq_len, bool) or not isinstance(max_seq_len, int) or max_seq_len <= 0:
+        raise ValueError("max_seq_len must be a positive integer.")
+    if len(messages) < 2:
+        raise ValueError("messages must include a prompt before the final assistant turn.")
 
-    Must return a dict with:
-      - "input_ids": 1D LongTensor -- the full tokenized conversation
-        (`tokenizer.apply_chat_template(messages, tokenize=True, ...)`), truncated to
-        at most max_seq_len tokens.
-
-      - "attention_mask": 1D LongTensor, same length, all 1s (no padding needed here --
-        batching/collating happens in the caller's train_loop()).
-
-      - "response_mask": 1D LongTensor, same length: 1 for the final assistant-turn
-        tokens, 0 everywhere else (prompt tokens and any earlier turns).
-
-    This is the function the autograder unit-tests directly (see README.md's
-    Autograder section) -- its signature and the three return keys above must not
-    change. Both train_sft.build_sft_example() and train_dpo.build_dpo_example() call
-    this rather than re-deriving the masking logic independently -- implement it once,
-    here, and both Part A and Part B get it for free.
-
-    Hint: `tokenizer.apply_chat_template(messages[:-1], tokenize=True,
-    add_generation_prompt=True)` tokenizes everything up through the prompt that
-    invites the final assistant turn. Its length tells you exactly where the response
-    starts in the full conversation's tokenization -- everything before that index is
-    prompt, everything from it onward (up to the end-of-turn token) is response.
-    """
     # Tokenize the whole conversation, including the final response.
     full_tokens = tokenizer.apply_chat_template(
         messages, tokenize=True, add_generation_prompt=False
@@ -47,11 +39,16 @@ def tokenize_with_response_mask(messages: list[dict], tokenizer, max_seq_len: in
         messages[:-1], tokenize=True, add_generation_prompt=True
     )
     response_start = len(prompt_tokens)
+    if full_tokens[:response_start] != prompt_tokens:
+        raise ValueError(
+            "The chat template's generation prompt is not a token prefix of the "
+            "complete conversation; cannot safely identify the final assistant response."
+        )
 
     input_ids = torch.tensor(full_tokens[:max_seq_len], dtype=torch.long)
     attention_mask = torch.ones_like(input_ids)
 
-    # Only the final assistant response contributes to the loss.
+    # Mask positions, not token IDs: an end-of-turn token may also be the pad ID.
     response_mask = torch.zeros_like(input_ids)
     response_mask[response_start:] = 1
 

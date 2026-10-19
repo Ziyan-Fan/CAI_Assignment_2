@@ -36,9 +36,15 @@ DATA_SEED = 6604  # Fix every sampling/shuffle step for reproducibility.
 # (data_loader.load_sft_examples()). Hyperparameters below are yours to tune.
 
 SFT_BATCH_SIZE = 4
-SFT_EPOCHS = 2
-SFT_LEARNING_RATE = 2e-5
+SFT_EPOCHS = 1
+SFT_LEARNING_RATE = 1e-5
 SFT_MAX_SEQ_LEN = 1024
+# Best balanced development result among the tested runs; see
+# output/sft_refined/comparison.json. Clear-answer retention still misses its floor.
+SFT_LOSS_NORMALIZATION = "token"
+SFT_CLEAR_WEIGHT = 1.0
+SFT_BASE_KL_WEIGHT = 2.0
+SFT_MAX_GRAD_NORM = 0.0  # Zero disables clipping; finite-gradient checks remain active.
 
 
 # --- Part B: DPO (align on your preference pairs). ---
@@ -48,9 +54,12 @@ SFT_MAX_SEQ_LEN = 1024
 # three distinct values and report all of them in results.json.
 
 DPO_BETAS = [0.05, 0.1, 0.5]
-DPO_BETA = 0.1  # Default used when --beta is not passed on the CLI.
+DPO_BETA = 0.05  # Conservative tested default; the complete sweep remains above.
 DPO_BATCH_SIZE = 2
 
-DPO_EPOCHS = 1
-DPO_LEARNING_RATE = 5e-6
+# Best asking rate among DPO checkpoints that meet the local clear-answer floor.
+# Tested from checkpoints/sft_refined/token_kl_2/epoch_1; pass that SFT path explicitly.
+# This still misses the joint target; see output/dpo_refined/comparison.json.
+DPO_EPOCHS = 0.5
+DPO_LEARNING_RATE = 1e-6
 DPO_MAX_SEQ_LEN = 1024
