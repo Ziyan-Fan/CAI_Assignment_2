@@ -22,6 +22,7 @@ from peft import PeftModel
 
 from configs.paths_config import SFT_CHECKPOINT_DIR, dpo_checkpoint_dir
 from configs.train_config import (
+    DATA_SEED,
     DPO_BATCH_SIZE,
     DPO_EPOCHS,
     DPO_LEARNING_RATE,
@@ -414,7 +415,7 @@ def main() -> None:
         help="Override; defaults to a per-beta directory.",
     )
 
-    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--seed", type=int, default=DATA_SEED)
     args = parser.parse_args()
 
     checkpoint_dir = args.checkpoint_dir or dpo_checkpoint_dir(args.beta)

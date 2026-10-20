@@ -49,7 +49,7 @@ from configs.paths_config import HAND_VERIFIED_PATH, PREFERENCE_DATA_PATH
 VALID_CLASSES = {"ambiguous", "clear"}
 MODEL_ID = "meta-llama/Llama-3.1-8B-Instruct"
 GENERATION_BATCH_SIZE = 4
-GENERATOR_VERSION = "natural_tasks_verified_v6"
+GENERATOR_VERSION = "natural_tasks_verified_v9"
 MAX_ATTEMPTS_PER_SLOT = 80
 
 # A few stable facts, independent of the author's answer and of evaluation data.
@@ -67,6 +67,50 @@ TRUSTED_FACTS = (
      r" in (?:our|the) solar system", ("earth",)),
     (r"(?:what is|what's|name|identify) the capital (?:city )?of france", ("paris",)),
     (r"(?:what is|what's|name|identify) the chemical formula (?:for|of) water", ("h2o",)),
+    (r"(?:what is|what's|name|identify) the capital (?:city )?of japan", ("tokyo",)),
+    (r"(?:what is|what's|name|identify) the capital (?:city )?of italy", ("rome",)),
+    (r"(?:what is|what's|name|identify) the capital (?:city )?of canada", ("ottawa",)),
+    (r"(?:what is|what's|name|identify) the capital (?:city )?of australia", ("canberra",)),
+    (r"(?:what is|what's|name|identify) the largest continent(?: by area)?", ("asia",)),
+    (r"(?:what is|what's|name|identify) the largest mammal", ("blue whale",)),
+    (r"(?:what is|what's|name|identify) (?:the )?earth'?s natural satellite", ("moon", "the moon")),
+    (r"(?:which|what) planet is closest to the sun", ("mercury",)),
+    (r"(?:what is|what's|name|identify) the closest planet to the sun", ("mercury",)),
+    (r"(?:which planet is best known for its prominent rings|what is the most prominent ringed planet)",
+     ("saturn",)),
+    (r"(?:what is|what's|name|identify) the most abundant gas in earth'?s atmosphere", ("nitrogen",)),
+    (r"(?:what is|what's|name|identify) the chemical symbol for oxygen", ("o",)),
+    (r"(?:what is|what's|name|identify) the chemical symbol for sodium", ("na",)),
+    (r"(?:what is|what's|name|identify) the chemical formula for carbon dioxide", ("co2",)),
+    (r"(?:what is|what's|name|identify) the atomic number of hydrogen", ("1",)),
+    (r"(?:how many|what number of) planets are in (?:our|the) solar system", ("8",)),
+    (r"(?:how many|what number of) sides does a hexagon have", ("6",)),
+    (r"(?:what is|what's|calculate) the square root of 81", ("9",)),
+    (r"(?:how many|what number of) seconds are in a minute", ("60",)),
+    (r"(?:how many|what number of) meters are in a kilometer", ("1000",)),
+    (r"(?:which|what) organ pumps blood through the human body", ("heart", "the heart")),
+    (r"(?:which|what) (?:major )?river flows through egypt", ("nile", "nile river", "the nile")),
+    (r"(?:who wrote|who is the author of) (?:the play )?hamlet", ("william shakespeare", "shakespeare")),
+    (r"(?:what is|what's|name|identify) the currency of japan", ("yen", "the yen")),
+    (r"(?:what is|what's|name|identify) the (?:official )?currency of the united kingdom",
+     ("pound sterling",)),
+    (r"(?:what is|what's|name|identify) the (?:main|primary) language spoken in brazil", ("portuguese",)),
+    (r"(?:who painted|who is the painter of) the mona lisa", ("leonardo da vinci",)),
+    (r"(?:who wrote|who is the author of) (?:the novel )?frankenstein", ("mary shelley",)),
+    (r"(?:at sea level, )?(?:what is|what's|name|identify) the boiling point of water in degrees celsius",
+     ("100", "100 degrees celsius")),
+    (r"(?:at standard pressure, )?(?:what is|what's|name|identify) the freezing point of water in degrees celsius",
+     ("0", "0 degrees celsius")),
+    (r"how many seconds are in one minute", ("60",)),
+    (r"how many meters are in one kilometer", ("1000",)),
+    (r"(?:what is|what's|name|identify) the smallest prime number", ("2",)),
+    (r"(?:what is|what's|calculate) 7 times 8", ("56",)),
+    (r"(?:what is|what's|calculate) 144 divided by 12", ("12",)),
+    (r"(?:what shape has|which shape has) three sides", ("triangle", "a triangle")),
+    (r"(?:what do bees collect from flowers to make honey|what substance do bees collect from flowers to make honey)",
+     ("nectar",)),
+    (r"(?:what is|what's|name|identify) the process by which plants convert light energy into chemical energy",
+     ("photosynthesis",)),
 )
 
 # These describe skills and information requirements, not sentence templates.
@@ -78,13 +122,6 @@ DOMAINS = {
     "reasoning": "Comparison, constraints, logical deduction, or a multi-step decision.",
     "knowledge": "A stable fact or explanation from science, history, geography, or computing. "
                  "An ordinary knowledge question is clear; lack of model knowledge is not ambiguity.",
-    "multiple_choice": "Answer an existing four-option question with one defensible answer. "
-                       "The generated USER request asks the assistant to SELECT an answer, never "
-                       "to create, write, or design a quiz. For clear requests, include the complete "
-                       "question and options A-D and explicitly request just the answer letter. "
-                       "For ambiguous requests, omit essential question/option/context information "
-                       "so the requested letter cannot be determined. Invent original question "
-                       "content; do not copy benchmark questions. Quiz creation belongs in writing.",
     "writing": "An original email, edit, explanation, creative passage, or useful outline. "
                "For clear requests, optional tone, names, or formatting may use reasonable defaults. "
                "For ambiguous requests, the missing source or goal must actually prevent the task.",
@@ -103,9 +140,6 @@ INFORMATION_GAPS = {
     "knowledge": ("the person is identified only in private notes the user has not supplied",
                   "the scientific process is named only in an unavailable private report",
                   "the event is identified only in missing personal records"),
-    "multiple_choice": ("the user requires an answer letter; options A-D are present but the question is missing",
-                        "the user requires an option letter but the mapping from letters to options is absent",
-                        "the user requires an answer letter for a question about an absent passage or diagram"),
     "writing": ("the user wants an existing paragraph rewritten but has not supplied it",
                 "the user requires answers to specific questions in a message whose content is absent",
                 "the user asks for edits preserving details in an unavailable draft"),
@@ -160,7 +194,8 @@ def _seed_for(*parts):
 def _schedule(n):
     """Fix class/domain/length quotas before generation, including for odd n."""
     jobs = []
-    domains = list(DOMAINS)
+    # Give explanations and writing more room, with the same domain mix in both classes.
+    domains = [*DOMAINS, "knowledge", "writing"]
     for label, count in (("ambiguous", (n + 1) // 2), ("clear", n // 2)):
         for index in range(count):
             domain = domains[index % len(domains)]
@@ -180,6 +215,41 @@ KNOWN_FACT_QUESTIONS = (
     ("What is the largest rocky planet in our solar system?", "Earth", ("Mars", "Venus", "Mercury"), "rocky_planet"),
     ("What is the capital city of France?", "Paris", ("Rome", "Madrid", "Berlin"), "france_capital"),
     ("What is the chemical formula for water?", "H2O", ("CO2", "O2", "NaCl"), "water_formula"),
+    ("What is the capital city of Japan?", "Tokyo", ("Seoul", "Beijing", "Bangkok"), "japan_capital"),
+    ("What is the capital city of Italy?", "Rome", ("Madrid", "Athens", "Lisbon"), "italy_capital"),
+    ("What is the capital city of Canada?", "Ottawa", ("Toronto", "Vancouver", "Montreal"), "canada_capital"),
+    ("What is the capital city of Australia?", "Canberra", ("Sydney", "Melbourne", "Perth"), "australia_capital"),
+    ("What is the largest continent by area?", "Asia", ("Africa", "Europe", "South America"), "largest_continent"),
+    ("What is the largest mammal?", "Blue whale", ("African elephant", "Giraffe", "Hippopotamus"), "largest_mammal"),
+    ("What is Earth's natural satellite?", "The Moon", ("Mars", "the Sun", "Venus"), "earth_satellite"),
+    ("Which planet is closest to the Sun?", "Mercury", ("Venus", "Earth", "Mars"), "closest_planet"),
+    ("Which planet is best known for its prominent rings?", "Saturn", ("Jupiter", "Uranus", "Neptune"), "ringed_planet"),
+    ("What is the most abundant gas in Earth's atmosphere?", "Nitrogen", ("Oxygen", "Argon", "Carbon dioxide"), "atmospheric_gas"),
+    ("What is the chemical symbol for oxygen?", "O", ("Ox", "Og", "Om"), "oxygen_symbol"),
+    ("What is the chemical symbol for sodium?", "Na", ("So", "S", "N"), "sodium_symbol"),
+    ("What is the chemical formula for carbon dioxide?", "CO2", ("CO", "C2O", "O2"), "carbon_dioxide_formula"),
+    ("What is the atomic number of hydrogen?", "1", ("2", "0", "3"), "hydrogen_atomic_number"),
+    ("How many planets are in our solar system?", "8", ("7", "9", "10"), "planet_count"),
+    ("How many sides does a hexagon have?", "6", ("5", "7", "8"), "hexagon_sides"),
+    ("What is the square root of 81?", "9", ("8", "7", "10"), "square_root_81"),
+    ("How many seconds are in one minute?", "60", ("30", "45", "100"), "seconds_per_minute"),
+    ("How many meters are in one kilometer?", "1000", ("100", "500", "10000"), "meters_per_kilometer"),
+    ("Which organ pumps blood through the human body?", "The heart", ("The lungs", "The liver", "The kidneys"), "blood_pumping_organ"),
+    ("Which major river flows through Egypt?", "The Nile", ("The Amazon", "The Danube", "The Yangtze"), "egypt_river"),
+    ("Who wrote the play Hamlet?", "William Shakespeare", ("Christopher Marlowe", "Ben Jonson", "John Milton"), "hamlet_author"),
+    ("What is the currency of Japan?", "The yen", ("The won", "The yuan", "The baht"), "japan_currency"),
+    ("What is the official currency of the United Kingdom?", "Pound sterling", ("The euro", "The yen", "The franc"), "uk_currency"),
+    ("What is the primary language spoken in Brazil?", "Portuguese", ("Spanish", "French", "Italian"), "brazil_language"),
+    ("Who painted the Mona Lisa?", "Leonardo da Vinci", ("Michelangelo", "Raphael", "Sandro Botticelli"), "mona_lisa_painter"),
+    ("Who wrote the novel Frankenstein?", "Mary Shelley", ("Jane Austen", "Charlotte Bronte", "Virginia Woolf"), "frankenstein_author"),
+    ("At sea level, what is the boiling point of water in degrees Celsius?", "100", ("0", "50", "150"), "water_boiling_point"),
+    ("At standard pressure, what is the freezing point of water in degrees Celsius?", "0", ("-10", "10", "32"), "water_freezing_point"),
+    ("What is the smallest prime number?", "2", ("1", "3", "5"), "smallest_prime"),
+    ("What is 7 times 8?", "56", ("48", "54", "64"), "seven_times_eight"),
+    ("What is 144 divided by 12?", "12", ("10", "11", "14"), "division_144_by_12"),
+    ("Which shape has three sides?", "A triangle", ("A square", "A pentagon", "A hexagon"), "three_sided_shape"),
+    ("What do bees collect from flowers to make honey?", "Nectar", ("Pollen only", "Sap", "Dew"), "bee_honey_source"),
+    ("What is the process by which plants convert light energy into chemical energy?", "Photosynthesis", ("Respiration", "Fermentation", "Transpiration"), "photosynthesis"),
 )
 
 
@@ -313,6 +383,11 @@ def _structured_ground_truth(job, attempt):
             "expected": expected, "request": request, "source_name": source_name}
 
 
+def _knowledge_task(job):
+    """Keep a reproducible mix of short facts, explanations, and practical steps."""
+    return ("fact", "explanation", "instructions")[_seed_for(job["slot"], "knowledge_task") % 3]
+
+
 def _ground_truth(job, attempt):
     """Compute trusted answers for a subset; never execute model-written code."""
     if job["domain"] == "multiple_choice":
@@ -323,6 +398,8 @@ def _ground_truth(job, attempt):
     domain = job["domain"]
     facts = {}
     if domain == "knowledge" and job["class"] == "clear":
+        if _knowledge_task(job) != "fact":
+            return None  # Author a complete explanation or instructions, then review it.
         question, answer, _, skill = rng.choice(KNOWN_FACT_QUESTIONS)
         return {"operation": "known_fact", "skill": skill, "facts": {"question": question},
                 "hidden_key": None, "expected": answer}
@@ -418,10 +495,13 @@ def _ground_truth(job, attempt):
 
 AUTHOR_SYSTEM = """Create one original user request and its completed answer. The request must be answerable
 using ordinary public knowledge or a useful original draft with reasonable defaults.
+Do not create quizzes or multiple-choice questions in any domain.
 For knowledge, ask about a stable, well-established fact or explain a familiar
 mechanism. Avoid uncertain claims, current statistics, and multiple-choice questions.
-For writing, request a fictional sample email, apology, invitation or creative
-passage. Invented names and details are permitted in this fictional example.
+Practical instructions should cover an ordinary everyday or basic computing task,
+with the goal and essential inputs stated. Provide actionable steps appropriate to it.
+For writing, request a fictional sample email, apology, invitation, announcement,
+creative passage, or useful outline. Invented details are permitted in fictional examples.
 The request and answer must agree about who did what and what the writer should communicate.
 Do not request edits or summaries of an unavailable source.
 
@@ -473,9 +553,22 @@ def _author_messages(job, truth, recent, attempt=0, feedback=""):
     instruction = (f"Domain: {job['domain']}. {styles[job['style']]}\n"
                    "Avoid copying these recent requests: "
                    + json.dumps([r["prompt"] for r in recent], ensure_ascii=False))
+    if job["domain"] == "knowledge":
+        task = _knowledge_task(job)
+        instruction += "\n" + {
+            "fact": "Request a stable fact and give an appropriately brief answer.",
+            "explanation": "Request a short explanation of how or why a familiar concept works. "
+                           "Explain the mechanism, rather than just naming it.",
+            "instructions": "Request practical instructions for a well-specified task. "
+                            "Give the actual steps needed to complete it.",
+        }[task]
     if attempt:
         instruction += (f"\nRetry {attempt}. Previous failure: {feedback[:450]}\n"
                         "Choose a fresh answerable request and complete it correctly.")
+        if "response_length" in feedback:
+            instruction += ("\nKeep the completed answer to 50–80 words total, including any greeting "
+                            "and sign-off. Choose a simpler request with fewer required details "
+                            "so the answer can still complete the whole task.")
     return [{"role": "system", "content": AUTHOR_SYSTEM},
             {"role": "user", "content": instruction}]
 
@@ -976,6 +1069,13 @@ and intended message match the request, rather than substituting a different com
 Return only JSON: {"valid": true or false, "reason": "under 20 words"}."""
 
 
+def _needs_semantic_review(record):
+    # Only computed answers and source-derived quotes/extractions bypass model review.
+    return not (record["ground_truth"] or (
+        record["control"]["domain"] in {"knowledge", "document_tasks"}
+        and "source_draft" in record))
+
+
 def _review_messages(record):
     # Construction determines which input to withhold and the exact clarification.
     # Review a completed task once, so no hidden input is mistaken for supplied input.
@@ -1026,7 +1126,17 @@ class _DiversityFilter:
         self.skills = Counter()
         self.shape_limit = max(2, math.ceil(n * 0.008))
         self.response_limit = max(3, math.ceil(n * 0.01))
+        # Each clear knowledge/writing category needs about 10% of all pairs,
+        # but its rejected responses use only eight fixed questions. At n=1000,
+        # 15 uses each leaves room for 100 pairs without exhausting the bank.
+        self.fixed_question_limit = max(self.response_limit, math.ceil(n * 0.015))
         self.skill_limit = max(3, math.ceil(n * 0.035))
+
+    def _response_limit(self, record, role):
+        if (record["pair"]["class"] == "clear" and role == "rejected"
+                and record["task"]["domain"] in {"knowledge", "writing"}):
+            return self.fixed_question_limit
+        return self.response_limit
 
     def _keys(self, record):
         pair, task = record["pair"], record["task"]
@@ -1058,14 +1168,15 @@ class _DiversityFilter:
             return "skill_cap"
         if self.prompt_shapes[pair["class"], shape] >= self.shape_limit:
             return "prompt_structure_cap"
-        if any(self.response_shapes[key] >= self.response_limit for key in responses):
+        if any(self.response_shapes[key] >= self._response_limit(record, key[1])
+               for key in responses):
             return "response_repetition_cap"
         for label, role, text in responses:
             signature = _shingles(text.split())
             similar_count = sum(previous_label == label and previous_role == role
                                 and _similar(signature, previous)
                                 for previous_label, previous_role, previous in self.responses)
-            if similar_count >= self.response_limit:
+            if similar_count >= self._response_limit(record, role):
                 return "similar_response_cap"
         for label, previous in self.prompts:
             if label == pair["class"] and _similar(shingles, previous):
@@ -1296,8 +1407,7 @@ def _synthesize_pairs(n, *, checkpoint_path=None, resume=False, generate_many=No
             # Exact operations, inputs, replies and MCQ letters are constructed in
             # Python. Review only model-written answers; never ask an LLM to
             # second-guess a verified calculation or invent its class again.
-            needs_review = [r for r in candidates if not r["ground_truth"]
-                            and r["control"]["domain"] not in {"knowledge", "document_tasks"}]
+            needs_review = [r for r in candidates if _needs_semantic_review(r)]
             reviews = (generate_many([_review_messages(r) for r in needs_review],
                                     max_new_tokens=120, review=True) if needs_review else [])
             if len(reviews) != len(needs_review):
@@ -1306,7 +1416,7 @@ def _synthesize_pairs(n, *, checkpoint_path=None, resume=False, generate_many=No
             for record in candidates:
                 raw = (json.dumps({"valid": True, "method": "python",
                                    "reason": "Answer constructed directly from the task inputs."})
-                       if (record["ground_truth"] or record["control"]["domain"] in {"knowledge", "document_tasks"})
+                       if not _needs_semantic_review(record)
                        else next(reviews))
                 review_label = "clear" if record.get("review_scope") else record["pair"]["class"]
                 review = _review_result(raw, review_label)

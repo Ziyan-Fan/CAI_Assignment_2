@@ -26,7 +26,7 @@ TARGET_MODULES = ["q_proj", "k_proj", "v_proj", "o_proj"]  # present in both mod
 # clarifying question is preferred) and fully-specified requests (where a direct answer
 # is preferred). See README.md Part 1.
 
-MIN_PREFERENCE_PAIRS = 1000  # Spec floor: at least 1,000 pairs total.
+MIN_PREFERENCE_PAIRS = 2000  # Generate at least 2,000 pairs across both classes.
 HAND_VERIFY_SAMPLE = 100  # Spec: hand-verify 100 pairs and report the rejection rate.
 DATA_SEED = 6604  # Fix every sampling/shuffle step for reproducibility.
 

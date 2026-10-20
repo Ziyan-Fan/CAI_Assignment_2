@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0",
+  "metadata": {
+    "base_model": "meta-llama/Llama-3.2-1B-Instruct",
+    "seeds": {
+      "data": 6604,
+      "train": 6604,
+      "eval": 6604
+    },
+    "judge": {
+      "backend": "local_hf",
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "rubric_version": "1.0"
+    },
+    "betas": [
+      0.05,
+      0.1,
+      0.5
+    ]
+  },
+  "eval_sets": {
+    "ambiguous": {
+      "path": "eval/held_out_ambiguous.jsonl",
+      "n": 150
+    },
+    "clear": {
+      "path": "eval/held_out_clear.jsonl",
+      "n": 150
+    },
+    "mmlu": {
+      "path": "eval/mmlu_slice.jsonl",
+      "n": 200
+    }
+  },
+  "runs": {
+    "base": {
+      "ask_rate": 0.6133333333333333,
+      "answer_rate": 0.8066666666666666,
+      "mmlu_acc": 0.04,
+      "label_counts": {
+        "ambiguous": {
+          "ask": 92,
+          "answer": 25,
+          "other": 33
+        },
+        "clear": {
+          "ask": 6,
+          "answer": 121,
+          "other": 23
+        }
+      }
+    },
+    "sft": {
+      "ask_rate": 0.8466666666666667,
+      "answer_rate": 0.7866666666666666,
+      "mmlu_acc": 0.045,
+      "label_counts": {
+        "ambiguous": {
+          "ask": 127,
+          "answer": 10,
+          "other": 13
+        },
+        "clear": {
+          "ask": 9,
+          "answer": 118,
+          "other": 23
+        }
+      }
+    },
+    "dpo": [
+      {
+        "ask_rate": 0.8466666666666667,
+        "answer_rate": 0.7266666666666667,
+        "mmlu_acc": 0.255,
+        "label_counts": {
+          "ambiguous": {
+            "ask": 127,
+            "answer": 5,
+            "other": 18
+          },
+          "clear": {
+            "ask": 12,
+            "answer": 109,
+            "other": 29
+          }
+        },
+        "beta": 0.05
+      },
+      {
+        "ask_rate": 0.7266666666666667,
+        "answer_rate": 0.7666666666666667,
+        "mmlu_acc": 0.275,
+        "label_counts": {
+          "ambiguous": {
+            "ask": 109,
+            "answer": 11,
+            "other": 30
+          },
+          "clear": {
+            "ask": 6,
+            "answer": 115,
+            "other": 29
+          }
+        },
+        "beta": 0.1
+      },
+      {
+        "ask_rate": 0.5933333333333334,
+        "answer_rate": 0.78,
+        "mmlu_acc": 0.25,
+        "label_counts": {
+          "ambiguous": {
+            "ask": 89,
+            "answer": 15,
+            "other": 46
+          },
+          "clear": {
+            "ask": 6,
+            "answer": 117,
+            "other": 27
+          }
+        },
+        "beta": 0.5
+      }
+    ]
+  }
+}
