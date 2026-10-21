@@ -35,89 +35,89 @@
   "runs": {
     "base": {
       "ask_rate": 0.6133333333333333,
-      "answer_rate": 0.8066666666666666,
-      "mmlu_acc": 0.04,
+      "answer_rate": 0.9466666666666667,
+      "mmlu_acc": 0.32,
       "label_counts": {
         "ambiguous": {
           "ask": 92,
-          "answer": 25,
-          "other": 33
+          "answer": 34,
+          "other": 24
         },
         "clear": {
-          "ask": 6,
-          "answer": 121,
-          "other": 23
+          "ask": 8,
+          "answer": 142,
+          "other": 0
         }
       }
     },
     "sft": {
-      "ask_rate": 0.8466666666666667,
-      "answer_rate": 0.7866666666666666,
-      "mmlu_acc": 0.045,
+      "ask_rate": 0.7933333333333333,
+      "answer_rate": 0.9133333333333333,
+      "mmlu_acc": 0.32,
       "label_counts": {
         "ambiguous": {
-          "ask": 127,
-          "answer": 10,
-          "other": 13
+          "ask": 119,
+          "answer": 19,
+          "other": 12
         },
         "clear": {
-          "ask": 9,
-          "answer": 118,
-          "other": 23
+          "ask": 12,
+          "answer": 137,
+          "other": 1
         }
       }
     },
     "dpo": [
       {
-        "ask_rate": 0.8466666666666667,
-        "answer_rate": 0.7266666666666667,
-        "mmlu_acc": 0.255,
+        "ask_rate": 0.92,
+        "answer_rate": 0.84,
+        "mmlu_acc": 0.26,
         "label_counts": {
           "ambiguous": {
-            "ask": 127,
-            "answer": 5,
-            "other": 18
+            "ask": 138,
+            "answer": 8,
+            "other": 4
           },
           "clear": {
-            "ask": 12,
-            "answer": 109,
-            "other": 29
+            "ask": 20,
+            "answer": 126,
+            "other": 4
           }
         },
         "beta": 0.05
       },
       {
-        "ask_rate": 0.7266666666666667,
-        "answer_rate": 0.7666666666666667,
-        "mmlu_acc": 0.275,
+        "ask_rate": 0.92,
+        "answer_rate": 0.9,
+        "mmlu_acc": 0.32,
         "label_counts": {
           "ambiguous": {
-            "ask": 109,
-            "answer": 11,
-            "other": 30
+            "ask": 138,
+            "answer": 7,
+            "other": 5
           },
           "clear": {
-            "ask": 6,
-            "answer": 115,
-            "other": 29
+            "ask": 12,
+            "answer": 135,
+            "other": 3
           }
         },
         "beta": 0.1
       },
       {
-        "ask_rate": 0.5933333333333334,
-        "answer_rate": 0.78,
-        "mmlu_acc": 0.25,
+        "ask_rate": 0.8,
+        "answer_rate": 0.9333333333333333,
+        "mmlu_acc": 0.345,
         "label_counts": {
           "ambiguous": {
-            "ask": 89,
-            "answer": 15,
-            "other": 46
+            "ask": 120,
+            "answer": 20,
+            "other": 10
           },
           "clear": {
-            "ask": 6,
-            "answer": 117,
-            "other": 27
+            "ask": 8,
+            "answer": 140,
+            "other": 2
           }
         },
         "beta": 0.5

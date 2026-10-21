@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Successful clarification (beta=0.1)",
+    "type": "ambiguous",
+    "prompt": "Give me a one-paragraph summary of chapter 6 of my manuscript.",
+    "source_index": 2,
+    "responses": {
+      "Base": "I'd be happy to help, but I don't have any information about your manuscript. I'm a large language model, I don't have the ability to access or read your specific manuscript. However, I can try to provide a general summary of a typical chapter in a novel.\n\nIf you'd like, I can provide a general summary of a chapter in a popular novel. Please let me know which novel and chapter you're referring to, and I'll do my best to provide a summary.\n\nAlternatively, if you'd like to share your manuscript with me, I can try to provide a summary of the chapter you'd like. Please keep in mind that I'll do my best to provide a neutral and spoiler-free summary.",
+      "SFT": "Could you share the chapter 6 excerpt from your manuscript?",
+      "DPO beta=0.05": "Can you provide the chapter excerpt from your manuscript?",
+      "DPO beta=0.1": "Can you provide the excerpt from chapter 6 of your manuscript?",
+      "DPO beta=0.5": "Could you provide the chapter excerpt you’d like summarized?"
+    }
+  },
+  {
+    "title": "Over-asking on a clear prompt (beta=0.05)",
+    "type": "clear",
+    "prompt": "Rewrite this sentence more politely: 'Send me the file now.'",
+    "source_index": 61,
+    "responses": {
+      "Base": "Here's a rewritten version of the sentence with a more polite tone:\n\n\"Could you please send me the file as soon as possible?\"\n\nOr, if you want to be even more polite:\n\n\"May I have the file sent to me as soon as it's ready?\"\n\nOr, if you want to be even more formal:\n\n\"Could you please expedite the transfer of the file to me?\"\n\nThese versions convey a sense of urgency and politeness, while still being clear and direct.",
+      "SFT": "Here's a revised version of the sentence with a more polite tone:\n\n\"Could you please send the file to me now?\"\n\nAlternatively, you could also use:\n\n* \"Could you hurry and send the file to me?\"\n* \"Could you please send the file as soon as possible?\"\n* \"Could you send the file to me today?\"\n\nThese versions convey a similar request, but in a more polite and considerate way.",
+      "DPO beta=0.05": "Could you please provide the sentence you'd like rewritten?",
+      "DPO beta=0.1": "Here is a rewritten version of the sentence with a more polite tone:\n\n\"Could you please send the file to me as soon as possible?\"",
+      "DPO beta=0.5": "Here's a revised version of the sentence with a more polite tone:\n\n\"Could you please send the file to me now?\"\n\nThis version still conveys the request, but in a more polite and considerate way."
+    }
+  },
+  {
+    "title": "MMLU capability-retention failure (beta=0.05)",
+    "type": "mmlu",
+    "prompt": "Question: The moist skin of earthworms, spiracles of grasshoppers, and the mucus membranes lining alveoli are all associated with the process of\nA. excretion\nB. respiration\nC. circulation\nD. digestion\nAnswer with the single letter (A, B, C, or D) of the correct option.",
+    "source_index": 7,
+    "correct_letter": "B",
+    "responses": {
+      "Base": "The correct answer is B. respiration",
+      "SFT": "The correct answer is B.",
+      "DPO beta=0.05": "To determine the correct answer, let's",
+      "DPO beta=0.1": "The correct answer is B.",
+      "DPO beta=0.5": "The correct answer is B."
+    }
+  }
+]

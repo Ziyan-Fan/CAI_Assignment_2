@@ -1474,6 +1474,43 @@ def synthesize_pairs(n: int) -> list[dict]:
     clarifying-question response and a direct-answer response, and assign chosen/rejected
     by the request's class. Keep DATA_SEED fixed wherever you sample, so your data is reproducible.
     """
+    # Do not remove preference_pairs.json for data generation
+    existing_path = Path(PREFERENCE_DATA_PATH)
+    if existing_path.is_file():
+        required = {"class", "prompt", "chosen", "rejected"}
+        pairs = []
+        for line_number, line in enumerate(
+            existing_path.read_text(encoding="utf-8").splitlines(), start=1
+        ):
+            if not line.strip():
+                continue
+            try:
+                pair = json.loads(line)
+            except json.JSONDecodeError as exc:
+                raise ValueError(
+                    f"{existing_path}:{line_number}: invalid JSON ({exc})"
+                ) from exc
+            if not isinstance(pair, dict):
+                raise ValueError(f"{existing_path}:{line_number}: expected a JSON object")
+            missing = required - pair.keys()
+            if missing:
+                raise ValueError(
+                    f"{existing_path}:{line_number}: missing keys {sorted(missing)}"
+                )
+            if pair["class"] not in VALID_CLASSES:
+                raise ValueError(
+                    f"{existing_path}:{line_number}: invalid class {pair['class']!r}"
+                )
+            pairs.append(pair)
+
+        if len(pairs) < MIN_PREFERENCE_PAIRS:
+            raise ValueError(
+                f"{existing_path} contains {len(pairs)} pairs; at least "
+                f"{MIN_PREFERENCE_PAIRS} are required."
+            )
+        print(f"Using {len(pairs)} existing preference pairs from {existing_path}")
+        return pairs
+
     if n >= MIN_PREFERENCE_PAIRS:
         checkpoint = Path(PREFERENCE_DATA_PATH).with_suffix(f".{GENERATOR_VERSION}.partial.json")
         pairs = _synthesize_pairs(n, checkpoint_path=checkpoint, resume=checkpoint.exists())

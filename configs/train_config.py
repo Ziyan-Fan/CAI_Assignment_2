@@ -36,7 +36,7 @@ DATA_SEED = 6604  # Fix every sampling/shuffle step for reproducibility.
 # (data_loader.load_sft_examples()). Hyperparameters below are yours to tune.
 
 SFT_BATCH_SIZE = 4
-SFT_EPOCHS = 1
+SFT_EPOCHS = 2
 SFT_LEARNING_RATE = 1e-5
 SFT_MAX_SEQ_LEN = 1024
 # Best balanced development result among the tested runs; see
@@ -60,6 +60,6 @@ DPO_BATCH_SIZE = 2
 # Best asking rate among DPO checkpoints that meet the local clear-answer floor.
 # Tested from checkpoints/sft_refined/token_kl_2/epoch_1; pass that SFT path explicitly.
 # This still misses the joint target; see output/dpo_refined/comparison.json.
-DPO_EPOCHS = 0.5
+DPO_EPOCHS = 1
 DPO_LEARNING_RATE = 1e-6
 DPO_MAX_SEQ_LEN = 1024
